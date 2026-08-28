@@ -18,18 +18,20 @@
     <meta name="description"
         content="Track your gold and silver portfolio with Goldivio. Manage bars, coins, prices, and profit in one place. No accounts, no subscriptions, fully offline and secure.">
     <link rel="icon" type="image/png" href="logo.png">
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700&display=swap"
-        rel="stylesheet">
 
-    <!-- Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+    <div class="grain" aria-hidden="true"></div>
 
     <div class="page">
 
@@ -42,111 +44,197 @@
                 </div>
 
                 <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn small">
-                    Get App
+                    Get the app
                 </a>
             </div>
         </nav>
 
         <!-- HERO -->
         <section class="hero">
-            <h1>
-                Track your <span>gold bullions</span>
-            </h1>
-            <p>
-                Manage your collection of gold and silver bars and coins, track value and profit,
-                and keep everything secure - all on your device.
+            <div class="hero-glow" aria-hidden="true"></div>
+
+            <p class="eyebrow">A private vault for your precious metals</p>
+
+            <h1>Purchased. Recorded.<br><span>Yours alone.</span></h1>
+
+            <p class="hero-copy">
+                Goldivio is a personal ledger for gold and silver - log every bar and coin,
+                watch what your collection is worth, and keep it sealed on your device.
+                No accounts. No servers. No one else ever sees it.
             </p>
 
-            <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn">Download on Google Play</a>
+            <div class="hero-actions">
+                <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn">Download on Google
+                    Play</a>
 
-        </section>
-
-        <!-- FEATURES -->
-        <section class="features">
-            <h2>Your Investment, Smarter.</h2>
-
-            <div class="grid">
-
-                <div class="card">
-                    <span class="material-icons-outlined">dashboard</span>
-                    <h3>Portfolio Management</h3>
-                    <p>Manage your collection with all key information in one place.</p>
-                </div>
-
-                <div class="card">
-                    <span class="material-icons-outlined">account_balance</span>
-                    <h3>Gold & Silver Bullions</h3>
-                    <p>Add bars and coins with detailed customization options.</p>
-                </div>
-
-                <div class="card">
-                    <span class="material-icons-outlined">photo_camera</span>
-                    <h3>Photos & Receipts</h3>
-                    <p>Attach images and receipts to each bullion for easy reference.</p>
-                </div>
-
-                <div class="card">
-                    <span class="material-icons-outlined">lock</span>
-                    <h3>Secure Storage</h3>
-                    <p>Biometric protection with encrypted local-only data storage.</p>
-                </div>
-
-                <div class="card">
-                    <span class="material-icons-outlined">stacked_line_chart</span>
-                    <h3>Analytics</h3>
-                    <p>Visualize your portfolio with clear charts and performance insights.</p>
-                </div>
-
-                <div class="card">
-                    <span class="material-icons-outlined">auto_awesome</span>
-                    <h3>Interactive UI</h3>
-                    <p>Explore your collection with parallax effects and interactive visuals.</p>
-                </div>
-
+<!--                 <div class="hallmark hallmark--sm" role="img"
+                    aria-label="Goldivio hallmark: offline, encrypted, on-device, private">
+                    <svg viewBox="0 0 200 200" class="hallmark-svg">
+                        <defs>
+                            <path id="ringPathSm" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" />
+                        </defs>
+                        <circle class="hallmark-ring-outer" cx="100" cy="100" r="96" />
+                        <circle class="hallmark-ring-inner" cx="100" cy="100" r="62" />
+                        <text class="hallmark-ring-text">
+                            <textPath href="#ringPathSm" startOffset="0%">
+                                &#8226; OFFLINE &#8226; ENCRYPTED &#8226; ON&#8209;DEVICE &#8226; PRIVATE &#8226;
+                            </textPath>
+                        </text>
+                        <text class="hallmark-center-symbol" x="100" y="94" text-anchor="middle">Au</text>
+                        <text class="hallmark-center-fine" x="100" y="118" text-anchor="middle">999.9</text>
+                    </svg>
+                </div> -->
             </div>
         </section>
 
         <!-- SCREENSHOTS -->
-        <section class="screenshots">
-            <h2>Your Portfolio, Visualized.</h2>
+        <section class="vault">
+            <div class="section-head">
+                <p class="eyebrow">Inside the vault</p>
+                <h2>Your portfolio, visualized.</h2>
+            </div>
 
-            <div class="shots">
-                <img src="screenshot_grid.png">
-                <img src="screenshot_bullion_preview.png">
-                <img src="screenshot_receipt.png">
-                <img src="screenshot_chart.png">
-                <img src="screenshot_design_bar.png">
+            <div class="shelf">
+                <div class="slot"><img src="screenshot_grid.png" alt="Goldivio collection grid" loading="lazy"></div>
+                <div class="slot"><img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview"
+                        loading="lazy"></div>
+                <div class="slot slot--tall"><img src="screenshot_receipt.png" alt="Goldivio receipt attachment"
+                        loading="lazy"></div>
+                <div class="slot"><img src="screenshot_chart.png" alt="Goldivio value chart" loading="lazy"></div>
+                <div class="slot"><img src="screenshot_design_bar.png" alt="Goldivio bar detail view" loading="lazy">
+                </div>
             </div>
         </section>
 
+
         <!-- DOWNLOAD -->
-        <!--
-    <section id="download" class="download">
-        <h2>Start tracking your gold today</h2>
-        <p>No accounts. No subscriptions. Just your gold portfolio.</p>
+        <section id="download" class="certificate">
+            <div class="certificate-corner tl" aria-hidden="true"></div>
+            <div class="certificate-corner tr" aria-hidden="true"></div>
+            <div class="certificate-corner bl" aria-hidden="true"></div>
+            <div class="certificate-corner br" aria-hidden="true"></div>
 
-        <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn large">
-            Get it on Google Play
-        </a>
-		
-    </section>
-	-->
-        <section id="download" class="download">
-            <h2>Start tracking your precious metals today</h2>
-            <p>No accounts. No subscriptions. Offline, secure and encrypted.</p>
+            <p class="eyebrow">Get started</p>
+            <h2>Start your ledger today.</h2>
+            <p class="certificate-copy">No account. No subscription. No server ever sees your gold.</p>
 
-            <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank" rel="noopener noreferrer">
+            <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank" rel="noopener noreferrer"
+                class="play-badge">
                 <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
             </a>
         </section>
 
+        <!-- LEDGER / FEATURES -->
+        <section class="ledger">
+            <div class="section-head">
+                <p class="eyebrow">The ledger</p>
+                <h2>Everything about your collection, in one place.</h2>
+            </div>
+
+            <div class="ledger-rows">
+
+                <div class="ledger-row">
+                    <span class="ledger-icon">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <rect x="4" y="19" width="24" height="6" rx="1.5" />
+                            <rect x="6" y="12" width="20" height="6" rx="1.5" />
+                            <rect x="8" y="5" width="16" height="6" rx="1.5" />
+                        </svg>
+                    </span>
+                    <div class="ledger-text">
+                        <h3>Portfolio, at a glance</h3>
+                        <p>Every bar and coin - weight, purity, cost - organized in one collection you can scan in
+                            seconds.</p>
+                    </div>
+                </div>
+
+                <div class="ledger-row">
+                    <span class="ledger-icon">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <ellipse cx="16" cy="8" rx="11" ry="4" />
+                            <path d="M5 8v8c0 2.2 4.9 4 11 4s11-1.8 11-4V8" />
+                            <path d="M5 16v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8" />
+                        </svg>
+                    </span>
+                    <div class="ledger-text">
+                        <h3>Gold &amp; silver, your way</h3>
+                        <p>Add bars and coins with the detail that actually matters: mint, purity, weight, premium paid.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="ledger-row">
+                    <span class="ledger-icon">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <rect x="3" y="9" width="26" height="18" rx="2.5" />
+                            <circle cx="16" cy="18" r="6" />
+                            <rect x="11" y="5" width="8" height="4" rx="1" />
+                        </svg>
+                    </span>
+                    <div class="ledger-text">
+                        <h3>Photos &amp; receipts</h3>
+                        <p>Attach a photo and the receipt to each piece, so provenance is never a question later.</p>
+                    </div>
+                </div>
+
+                <div class="ledger-row">
+                    <span class="ledger-icon">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <rect x="7" y="14" width="18" height="14" rx="2.5" />
+                            <path d="M11 14v-4a5 5 0 0 1 10 0v4" />
+                            <circle cx="16" cy="20" r="1.8" fill="currentColor" stroke="none" />
+                        </svg>
+                    </span>
+                    <div class="ledger-text">
+                        <h3>Sealed on your device</h3>
+                        <p>Biometric lock and local encryption keep the vault shut. Nothing is ever uploaded.</p>
+                    </div>
+                </div>
+
+                <div class="ledger-row">
+                    <span class="ledger-icon">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <path d="M4 27V15" />
+                            <path d="M12 27V9" />
+                            <path d="M20 27V17" />
+                            <path d="M28 27V5" />
+                            <path d="M4 27h24" />
+                        </svg>
+                    </span>
+                    <div class="ledger-text">
+                        <h3>Value over time</h3>
+                        <p>Charts show what your collection is worth today, and the path it took to get there.</p>
+                    </div>
+                </div>
+
+                <div class="ledger-row">
+                    <span class="ledger-icon">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <path d="M16 3 L18.8 13.2 L29 16 L18.8 18.8 L16 29 L13.2 18.8 L3 16 L13.2 13.2 Z" />
+                        </svg>
+                    </span>
+                    <div class="ledger-text">
+                        <h3>Built to explore</h3>
+                        <p>Parallax depth and interactive views make browsing your vault feel tactile, not
+                            administrative.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- FOOTER -->
         <footer class="footer">
-            © 2026 Goldivio
+            <svg class="footer-mark" viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="16" cy="16" r="14.5" />
+                <text x="16" y="20.5" text-anchor="middle">Au</text>
+            </svg>
+            <span>&copy; 2026 Goldivio &mdash; private, offline, yours.</span>
         </footer>
 
     </div>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
