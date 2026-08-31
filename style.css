@@ -1,32 +1,33 @@
 /* =========================================================
-   GOLDIVIO — design tokens
-   A private vault for gold & silver. The visual language
-   borrows from assay marks, hallmark stamps and paper
-   ledgers: hairline brass rules, an engraved display face,
-   and a stamped circular emblem as the signature motif.
+   GOLDIVIO - "Vault Console"
+   A third, distinct take, keeping the dark brown + gold
+   palette but rebuilt around a security-console idea: a
+   combination-dial hero graphic, safe-deposit-box feature
+   grid, and screenshots mounted like rack monitors. Display
+   type goes geometric/technical rather than editorial serif.
    ========================================================= */
 
 :root {
-    --bg: #14120f;
-    --bg-alt: #191510;
-    --panel: #1f1b14;
-    --panel-border: #382f1f;
-    --rule: rgba(198, 161, 91, 0.22);
+    --bg: #17130f;
+    --bg-alt: #1d1712;
+    --panel: #241d15;
+    --panel-2: #2b2216;
+    --border: #3d3221;
+    --border-bright: #55442a;
 
-    --gold: #c6a15b;
-    --gold-bright: #e7cd93;
-    --gold-dim: #8a6f3e;
-    --silver: #b7bac0;
+    --gold: #c9a455;
+    --gold-bright: #e8cb84;
+    --gold-dim: #8f723f;
 
-    --ink: #f3eee2;
-    --ink-muted: #a89f8c;
-    --ink-faint: #6f6858;
+    --ink: #f1e9d8;
+    --ink-muted: #aca08a;
+    --ink-faint: #6e6248;
 
-    --serif: 'Fraunces', 'Iowan Old Style', serif;
+    --display: 'Space Grotesk', 'Arial Narrow', sans-serif;
     --sans: 'Inter', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
 
-    --container: 1120px;
+    --container: 1140px;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -61,19 +62,23 @@ a {
     color: inherit;
 }
 
+::selection {
+    background: var(--gold);
+    color: #17130f;
+}
+
 :focus-visible {
     outline: 2px solid var(--gold-bright);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
-/* fine brushed-metal grain overlay */
 .grain {
     position: fixed;
     inset: 0;
     z-index: 999;
     pointer-events: none;
-    opacity: 0.05;
+    opacity: 0.045;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
@@ -94,13 +99,12 @@ a {
 }
 
 h1, h2, h3 {
-    font-family: var(--serif);
+    font-family: var(--display);
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--ink);
 }
 
-/* reveal-on-scroll (progressive enhancement, see script.js) */
 .reveal {
     opacity: 0;
     transform: translateY(18px);
@@ -113,14 +117,9 @@ h1, h2, h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-    .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .status-dot { animation: none !important; }
 }
 
 /* =========================================================
@@ -128,8 +127,22 @@ h1, h2, h3 {
    ========================================================= */
 
 .nav {
-    padding: 28px 0;
-    margin-bottom: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 24px 0;
+    margin-bottom: 8px;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s var(--ease), border-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease), padding 0.3s var(--ease);
+}
+
+.nav--scrolled {
+    padding: 14px 0;
+    background: rgba(23, 19, 15, 0.85);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    border-bottom: 1px solid var(--border);
 }
 
 .nav-inner {
@@ -142,15 +155,29 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-family: var(--display);
+    font-size: 1.3rem;
+    font-weight: 700;
     letter-spacing: -0.01em;
 }
 
 .logo-img {
-    height: 32px;
+    height: 30px;
     object-fit: contain;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 0 rgba(201, 164, 85, 0.5);
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 164, 85, 0.45); }
+    50% { box-shadow: 0 0 0 5px rgba(201, 164, 85, 0); }
 }
 
 /* =========================================================
@@ -163,26 +190,29 @@ h1, h2, h3 {
     gap: 8px;
     background: linear-gradient(180deg, var(--gold-bright), var(--gold) 65%, var(--gold-dim));
     color: #1a1509;
-    padding: 15px 30px;
+    padding: 15px 28px;
     border-radius: 3px;
     font-family: var(--sans);
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
     letter-spacing: 0.01em;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 10px 24px -10px rgba(198, 161, 91, 0.55);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 12px 26px -12px rgba(201, 164, 85, 0.5);
     transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 16px 30px -12px rgba(198, 161, 91, 0.7);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 18px 32px -14px rgba(201, 164, 85, 0.65);
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
 }
 
 .btn.small {
-    padding: 10px 18px;
+    padding: 9px 16px;
     font-size: 0.85rem;
-    border-radius: 3px;
 }
 
 /* =========================================================
@@ -190,93 +220,124 @@ h1, h2, h3 {
    ========================================================= */
 
 .hero {
-    position: relative;
-    text-align: center;
-    padding: 40px 0 96px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 56px 0 88px;
 }
 
-.hero-glow {
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 720px;
-    height: 480px;
-    background: radial-gradient(ellipse at center, rgba(198, 161, 91, 0.16), transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-}
+.eyebrow { display: block; }
 
 .hero h1 {
-    font-size: 3.4rem;
-    line-height: 1.12;
-    margin-bottom: 26px;
-}
-
-.hero h1 span {
-    color: var(--gold);
-    font-style: italic;
+    font-size: clamp(2.1rem, 3.6vw + 1rem, 3.2rem);
+    line-height: 1.14;
+    margin-bottom: 22px;
 }
 
 .hero-copy {
-    max-width: 560px;
-    margin: 0 auto 44px;
+    max-width: 48ch;
     color: var(--ink-muted);
-    font-size: 1.05rem;
-    line-height: 1.65;
+    font-size: clamp(0.98rem, 0.4vw + 0.9rem, 1.05rem);
+    line-height: 1.7;
+    margin-bottom: 30px;
 }
 
-.hero-actions {
+.hero-visual {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 36px;
+    justify-content: center;
 }
 
-/* -- hallmark stamp: the signature element -- */
-
-.hallmark {
-    width: 132px;
-    height: 132px;
-    opacity: 0.92;
-}
-
-.hallmark--sm {
-    width: 108px;
-    height: 108px;
-}
-
-.hallmark-svg {
+.dial {
     width: 100%;
-    height: 100%;
+    max-width: 380px;
 }
 
-.hallmark-ring-outer,
-.hallmark-ring-inner {
+.dial-ring {
     fill: none;
-    stroke: var(--gold-dim);
+    stroke: var(--border-bright);
     stroke-width: 1;
 }
 
-.hallmark-ring-text {
-    font-family: var(--mono);
-    font-size: 8.6px;
-    letter-spacing: 0.05em;
-    fill: var(--gold);
+.dial-ring--bevel {
+    stroke: rgba(0, 0, 0, 0.5);
+    stroke-width: 1;
 }
 
-.hallmark-center-symbol {
-    font-family: var(--serif);
-    font-size: 30px;
-    font-style: italic;
+.dial-ring--inner {
+    stroke: var(--gold-dim);
+    stroke-width: 1.2;
+    stroke-opacity: 0.6;
+}
+
+.dial-face {
+    stroke: var(--border);
+    stroke-width: 1;
+}
+
+.dial-tick {
+    stroke: var(--ink-faint);
+    stroke-width: 1.4;
+}
+
+.dial-tick--major {
+    stroke: var(--gold);
+    stroke-width: 2;
+}
+
+.dial-label {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
     fill: var(--ink);
 }
 
-.hallmark-center-fine {
+.dial-fine {
     font-family: var(--mono);
     font-size: 9px;
-    letter-spacing: 0.08em;
-    fill: var(--ink-muted);
+    letter-spacing: 0.1em;
+    fill: var(--ink-faint);
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0;
+    margin-bottom: 96px;
+}
+
+.stat {
+    text-align: center;
+    padding: 0 16px;
+    border-left: 1px solid var(--border);
+}
+
+.stat:first-child {
+    border-left: none;
+}
+
+.stat-num {
+    display: block;
+    font-family: var(--mono);
+    font-size: clamp(1.6rem, 2vw + 1rem, 2.1rem);
+    font-weight: 600;
+    color: var(--gold-bright);
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
 }
 
 /* =========================================================
@@ -290,171 +351,253 @@ h1, h2, h3 {
 }
 
 .section-head h2 {
-    font-size: 2.1rem;
-    line-height: 1.25;
+    font-size: clamp(1.6rem, 2vw + 1rem, 2.15rem);
+    line-height: 1.28;
 }
 
 /* =========================================================
-   LEDGER (features)
+   DEPOSIT BOXES (features)
    ========================================================= */
 
-.ledger {
-    padding: 96px 0;
-    border-top: 1px solid var(--rule);
+.boxes {
+    padding-bottom: 108px;
 }
 
-.ledger-rows {
-    max-width: 760px;
-    margin: 0 auto;
-}
-
-.ledger-row {
+.box-grid {
     display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 26px;
-    align-items: flex-start;
-    padding: 28px 8px;
-    border-bottom: 1px solid var(--rule);
-    transition: background 0.3s var(--ease);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
 }
 
-.ledger-row:first-child {
-    border-top: 1px solid var(--rule);
+.box {
+    position: relative;
+    background: linear-gradient(160deg, var(--panel-2), var(--panel));
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 22px;
+    transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
-.ledger-row:hover {
-    background: linear-gradient(90deg, rgba(198, 161, 91, 0.05), transparent);
+.box:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-bright);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 164, 85, 0.12);
 }
 
-.ledger-icon {
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--panel-border);
-    border-radius: 50%;
+.box-icon {
     display: flex;
+    width: 42px;
+    height: 42px;
     align-items: center;
     justify-content: center;
     color: var(--gold);
-    flex-shrink: 0;
-    transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+    margin-bottom: 18px;
+    transition: transform 0.35s var(--ease);
 }
 
-.ledger-row:hover .ledger-icon {
-    border-color: var(--gold);
-    color: var(--gold-bright);
+.box:hover .box-icon {
+    transform: rotate(18deg);
 }
 
-.ledger-icon svg {
-    width: 22px;
-    height: 22px;
+.box-icon svg {
+    width: 26px;
+    height: 26px;
     stroke: currentColor;
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-.ledger-text h3 {
-    font-size: 1.15rem;
+.box h3 {
+    font-size: 1.05rem;
     margin-bottom: 8px;
     font-weight: 600;
 }
 
-.ledger-text p {
+.box p {
     color: var(--ink-muted);
-    line-height: 1.6;
-    font-size: 0.97rem;
-    max-width: 46ch;
+    font-size: 0.92rem;
+    line-height: 1.55;
 }
 
 /* =========================================================
-   VAULT SHELF (screenshots)
+   RACK (screenshots)
    ========================================================= */
 
-.vault {
-    padding: 96px 0;
-    border-top: 1px solid var(--rule);
+.rack {
+    padding-bottom: 108px;
 }
 
-.shelf {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-.slot {
-    position: relative;
-    width: 190px;
-    border-radius: 20px;
-    padding: 6px;
-    background: linear-gradient(160deg, #2c2416, #17140e 60%);
-    border: 1px solid var(--panel-border);
-    box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.65);
-    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-}
-
-.slot:nth-child(odd) {
-    transform: rotate(-2deg) translateY(6px);
-}
-
-.slot:nth-child(even) {
-    transform: rotate(2deg);
-}
-
-.slot--tall {
-    width: 200px;
-    transform: translateY(-14px);
-}
-
-.slot:hover {
-    transform: translateY(-10px) rotate(0deg);
-    box-shadow: 0 26px 50px -16px rgba(198, 161, 91, 0.35);
-    z-index: 2;
-}
-
-.slot img {
+.rack-scroll {
     width: 100%;
-    border-radius: 15px;
-    aspect-ratio: 9 / 19;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-bright) transparent;
+    scroll-snap-type: x proximity;
+}
+
+.rack-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.rack-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rack-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-bright);
+    border-radius: 3px;
+}
+
+.rack-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    width: max-content;
+    margin: 0 auto;
+    padding: 4px 4px 14px;
+}
+
+.monitor {
+    position: relative;
+    width: 164px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    background: linear-gradient(160deg, var(--panel-2), var(--bg-alt));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 10px 34px;
+    box-shadow: 0 22px 40px -20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.monitor:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 50px -18px rgba(201, 164, 85, 0.22);
+}
+
+.monitor img {
+    width: 100%;
+    border-radius: 3px;
+    aspect-ratio: 9 / 18;
     object-fit: cover;
 }
 
+.monitor figcaption {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+}
+
+.monitor-bolt {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-bright);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.monitor-bolt.tl { top: 6px; left: 6px; }
+.monitor-bolt.tr { top: 6px; right: 6px; }
+.monitor-bolt.bl { bottom: 24px; left: 6px; }
+.monitor-bolt.br { bottom: 24px; right: 6px; }
+
 /* =========================================================
-   CERTIFICATE (download)
+   VAULT DOOR (download)
    ========================================================= */
 
-.certificate {
+.vault-door {
     position: relative;
-    text-align: center;
-    margin: 96px 0;
-    padding: 72px 32px;
-    border: 1px solid var(--panel-border);
-    border-radius: 4px;
-    background: radial-gradient(ellipse at 50% 0%, rgba(198, 161, 91, 0.08), transparent 60%), var(--panel);
+    margin-bottom: 96px;
+    padding: 64px 60px;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(201, 164, 85, 0.12), transparent 62%),
+        linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    overflow: hidden;
 }
 
-.certificate-corner {
+.vault-door::before {
+    content: '';
     position: absolute;
-    width: 22px;
-    height: 22px;
-    border: 1px solid var(--gold-dim);
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
 }
 
-.certificate-corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
-.certificate-corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
-.certificate-corner.bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
-.certificate-corner.br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
-
-.certificate h2 {
-    font-size: 2rem;
-    margin-bottom: 16px;
+.vault-door::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.7;
 }
 
-.certificate-copy {
+.vault-door-glow {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 640px;
+    height: 420px;
+    background: radial-gradient(ellipse at center, rgba(201, 164, 85, 0.16), transparent 70%);
+    pointer-events: none;
+}
+
+.vault-door-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+}
+
+.vault-door-visual {
+    flex-shrink: 0;
+}
+
+.dial--sm {
+    width: 176px;
+}
+
+.vault-door-content {
+    max-width: 460px;
+    text-align: left;
+}
+
+.vault-door-copy {
     color: var(--ink-muted);
-    margin-bottom: 36px;
+    margin-bottom: 32px;
 }
+
+.rivet {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-dim), #1a140c 75%);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.rivet.tl { top: 20px; left: 20px; }
+.rivet.tr { top: 20px; right: 20px; }
+.rivet.bl { bottom: 20px; left: 20px; }
+.rivet.br { bottom: 20px; right: 20px; }
 
 .play-badge {
     display: inline-block;
@@ -479,72 +622,102 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 40px 0 56px;
-    border-top: 1px solid var(--rule);
+    padding: 36px 0 56px;
+    border-top: 1px solid var(--border);
     color: var(--ink-faint);
     font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+    text-align: center;
 }
 
-.footer-mark {
-    width: 18px;
-    height: 18px;
-    opacity: 0.7;
+.footer-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.footer-mark circle {
-    fill: none;
-    stroke: var(--gold-dim);
-    stroke-width: 1.4;
-}
-
-.footer-mark text {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 11px;
-    fill: var(--gold);
+.footer-line .status-dot {
+    width: 6px;
+    height: 6px;
 }
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 16px;
+    }
+
+    .hero-copy {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-visual {
+        order: -1;
+        margin-bottom: 12px;
+    }
+
+    .dial {
+        max-width: 260px;
+    }
+
+    .box-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 720px) {
-    .hero h1 {
-        font-size: 2.4rem;
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
-    .section-head h2 {
-        font-size: 1.7rem;
+    .stat {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
     }
 
-    .ledger-row {
-        grid-template-columns: 44px 1fr;
-        gap: 18px;
+    .stat:first-child {
+        border-top: none;
+        padding-top: 0;
     }
 
-    .certificate {
-        padding: 56px 20px;
+    .box-grid {
+        grid-template-columns: 1fr;
     }
 
-    .slot {
-        width: 150px;
+    .vault-door {
+        padding: 56px 24px;
     }
 
-    .slot--tall {
-        width: 160px;
+    .vault-door-inner {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .vault-door-content {
+        text-align: center;
+    }
+
+    .dial--sm {
+        width: 148px;
+    }
+
+    .boxes, .rack {
+        padding-bottom: 84px;
     }
 }
 
 @media (max-width: 460px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hallmark--sm {
-        width: 88px;
-        height: 88px;
+    .monitor {
+        width: 150px;
     }
 }
