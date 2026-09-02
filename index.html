@@ -66,63 +66,80 @@
             </div>
 
             <div class="hero-visual">
-                <svg class="dial" viewBox="0 0 200 200" role="img" aria-label="Combination dial illustration">
-                    <defs>
-                        <radialGradient id="dialFace" cx="50%" cy="38%" r="72%">
-                            <stop offset="0%" stop-color="#2b2216" />
-                            <stop offset="100%" stop-color="#17130f" />
-                        </radialGradient>
-                    </defs>
-
-                    <circle class="dial-face" cx="100" cy="100" r="58" fill="url(#dialFace)" />
-                    <circle class="dial-ring" cx="100" cy="100" r="92" />
-                    <circle class="dial-ring dial-ring--bevel" cx="100" cy="100" r="88" />
-                    <circle class="dial-ring dial-ring--inner" cx="100" cy="100" r="60" />
-
-                    <line class="dial-tick dial-tick--major" x1="100.0" y1="8.0" x2="100.0" y2="22.0" />
-                    <line class="dial-tick" x1="123.8" y1="11.1" x2="121.7" y2="18.9" />
-                    <line class="dial-tick" x1="146.0" y1="20.3" x2="142.0" y2="27.3" />
-                    <line class="dial-tick" x1="165.1" y1="34.9" x2="159.4" y2="40.6" />
-                    <line class="dial-tick" x1="179.7" y1="54.0" x2="172.7" y2="58.0" />
-                    <line class="dial-tick" x1="188.9" y1="76.2" x2="181.1" y2="78.3" />
-                    <line class="dial-tick dial-tick--major" x1="192.0" y1="100.0" x2="178.0" y2="100.0" />
-                    <line class="dial-tick" x1="188.9" y1="123.8" x2="181.1" y2="121.7" />
-                    <line class="dial-tick" x1="179.7" y1="146.0" x2="172.7" y2="142.0" />
-                    <line class="dial-tick" x1="165.1" y1="165.1" x2="159.4" y2="159.4" />
-                    <line class="dial-tick" x1="146.0" y1="179.7" x2="142.0" y2="172.7" />
-                    <line class="dial-tick" x1="123.8" y1="188.9" x2="121.7" y2="181.1" />
-                    <line class="dial-tick dial-tick--major" x1="100.0" y1="192.0" x2="100.0" y2="178.0" />
-                    <line class="dial-tick" x1="76.2" y1="188.9" x2="78.3" y2="181.1" />
-                    <line class="dial-tick" x1="54.0" y1="179.7" x2="58.0" y2="172.7" />
-                    <line class="dial-tick" x1="34.9" y1="165.1" x2="40.6" y2="159.4" />
-                    <line class="dial-tick" x1="20.3" y1="146.0" x2="27.3" y2="142.0" />
-                    <line class="dial-tick" x1="11.1" y1="123.8" x2="18.9" y2="121.7" />
-                    <line class="dial-tick dial-tick--major" x1="8.0" y1="100.0" x2="22.0" y2="100.0" />
-                    <line class="dial-tick" x1="11.1" y1="76.2" x2="18.9" y2="78.3" />
-                    <line class="dial-tick" x1="20.3" y1="54.0" x2="27.3" y2="58.0" />
-                    <line class="dial-tick" x1="34.9" y1="34.9" x2="40.6" y2="40.6" />
-                    <line class="dial-tick" x1="54.0" y1="20.3" x2="58.0" y2="27.3" />
-                    <line class="dial-tick" x1="76.2" y1="11.1" x2="78.3" y2="18.9" />
-
-                    <text class="dial-label" x="100" y="94" text-anchor="middle">GOLDIVIO</text>
-                    <text class="dial-fine" x="100" y="114" text-anchor="middle">999.9 FINE</text>
-                </svg>
+                <div class="hero-glow" aria-hidden="true"></div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Offline by design</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">Biometric</span>
+                        <span class="stat-label">Authentication and authorization</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">256&#8209;bit</span>
+                        <span class="stat-label">On&#8209;device encryption</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- STATS -->
-        <section class="stats">
-            <div class="stat">
-                <span class="stat-num">100%</span>
-                <span class="stat-label">Offline by design</span>
+        <!-- SCREENSHOTS / RACK -->
+        <section class="rack">
+            <div class="section-head">
+                <p class="eyebrow">Your investment, smarter.</p>
+                <h2>Your portfolio, visualized.</h2>
             </div>
-            <div class="stat">
-                <span class="stat-num">Biometric</span>
-                <span class="stat-label">Authentication and authorization</span>
-            </div>
-            <div class="stat">
-                <span class="stat-num">256&#8209;bit</span>
-                <span class="stat-label">On&#8209;device encryption</span>
+
+            <div class="rack-grid">
+                <figure class="monitor">
+                    <span class="monitor-bolt tl" aria-hidden="true"></span>
+                    <span class="monitor-bolt tr" aria-hidden="true"></span>
+                    <span class="monitor-bolt bl" aria-hidden="true"></span>
+                    <span class="monitor-bolt br" aria-hidden="true"></span>
+                    <img src="screenshot_grid.png" alt="Goldivio collection grid" loading="lazy">
+                    <figcaption>Collection grid</figcaption>
+                </figure>
+                <figure class="monitor">
+                    <span class="monitor-bolt tl" aria-hidden="true"></span>
+                    <span class="monitor-bolt tr" aria-hidden="true"></span>
+                    <span class="monitor-bolt bl" aria-hidden="true"></span>
+                    <span class="monitor-bolt br" aria-hidden="true"></span>
+                    <img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview" loading="lazy">
+                    <figcaption>Bullion detail</figcaption>
+                </figure>
+                <figure class="monitor">
+                    <span class="monitor-bolt tl" aria-hidden="true"></span>
+                    <span class="monitor-bolt tr" aria-hidden="true"></span>
+                    <span class="monitor-bolt bl" aria-hidden="true"></span>
+                    <span class="monitor-bolt br" aria-hidden="true"></span>
+                    <img src="screenshot_receipt.png" alt="Goldivio receipt attachment" loading="lazy">
+                    <figcaption>Receipt overview</figcaption>
+                </figure>
+                <figure class="monitor">
+                    <span class="monitor-bolt tl" aria-hidden="true"></span>
+                    <span class="monitor-bolt tr" aria-hidden="true"></span>
+                    <span class="monitor-bolt bl" aria-hidden="true"></span>
+                    <span class="monitor-bolt br" aria-hidden="true"></span>
+                    <img src="screenshot_chart.png" alt="Goldivio value chart" loading="lazy">
+                    <figcaption>Value chart</figcaption>
+                </figure>
+                <figure class="monitor">
+                    <span class="monitor-bolt tl" aria-hidden="true"></span>
+                    <span class="monitor-bolt tr" aria-hidden="true"></span>
+                    <span class="monitor-bolt bl" aria-hidden="true"></span>
+                    <span class="monitor-bolt br" aria-hidden="true"></span>
+                    <img src="screenshot_design_bar.png" alt="Goldivio bar detail view" loading="lazy">
+                    <figcaption>Bullion design</figcaption>
+                </figure>
+                <figure class="monitor">
+                    <span class="monitor-bolt tl" aria-hidden="true"></span>
+                    <span class="monitor-bolt tr" aria-hidden="true"></span>
+                    <span class="monitor-bolt bl" aria-hidden="true"></span>
+                    <span class="monitor-bolt br" aria-hidden="true"></span>
+                    <img src="screenshot_spot_price.png" alt="Goldivio spot price settings" loading="lazy">
+                    <figcaption>Spot price</figcaption>
+                </figure>
             </div>
         </section>
 
@@ -186,67 +203,6 @@
             </div>
         </section>
 
-        <!-- SCREENSHOTS / RACK -->
-        <section class="rack">
-            <div class="section-head">
-                <p class="eyebrow">Your investment, smarter.</p>
-                <h2>Your portfolio, visualized.</h2>
-            </div>
-
-            <div class="rack-scroll">
-                <div class="rack-row">
-                <figure class="monitor">
-                    <span class="monitor-bolt tl" aria-hidden="true"></span>
-                    <span class="monitor-bolt tr" aria-hidden="true"></span>
-                    <span class="monitor-bolt bl" aria-hidden="true"></span>
-                    <span class="monitor-bolt br" aria-hidden="true"></span>
-                    <img src="screenshot_grid.png" alt="Goldivio collection grid" loading="lazy">
-                    <figcaption>Collection grid</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <span class="monitor-bolt tl" aria-hidden="true"></span>
-                    <span class="monitor-bolt tr" aria-hidden="true"></span>
-                    <span class="monitor-bolt bl" aria-hidden="true"></span>
-                    <span class="monitor-bolt br" aria-hidden="true"></span>
-                    <img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview" loading="lazy">
-                    <figcaption>Bullion detail</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <span class="monitor-bolt tl" aria-hidden="true"></span>
-                    <span class="monitor-bolt tr" aria-hidden="true"></span>
-                    <span class="monitor-bolt bl" aria-hidden="true"></span>
-                    <span class="monitor-bolt br" aria-hidden="true"></span>
-                    <img src="screenshot_receipt.png" alt="Goldivio receipt attachment" loading="lazy">
-                    <figcaption>Receipt overview</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <span class="monitor-bolt tl" aria-hidden="true"></span>
-                    <span class="monitor-bolt tr" aria-hidden="true"></span>
-                    <span class="monitor-bolt bl" aria-hidden="true"></span>
-                    <span class="monitor-bolt br" aria-hidden="true"></span>
-                    <img src="screenshot_chart.png" alt="Goldivio value chart" loading="lazy">
-                    <figcaption>Value chart</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <span class="monitor-bolt tl" aria-hidden="true"></span>
-                    <span class="monitor-bolt tr" aria-hidden="true"></span>
-                    <span class="monitor-bolt bl" aria-hidden="true"></span>
-                    <span class="monitor-bolt br" aria-hidden="true"></span>
-                    <img src="screenshot_design_bar.png" alt="Goldivio bar detail view" loading="lazy">
-                    <figcaption>Bullion design</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <span class="monitor-bolt tl" aria-hidden="true"></span>
-                    <span class="monitor-bolt tr" aria-hidden="true"></span>
-                    <span class="monitor-bolt bl" aria-hidden="true"></span>
-                    <span class="monitor-bolt br" aria-hidden="true"></span>
-                    <img src="screenshot_spot_price.png" alt="Goldivio spot price settings" loading="lazy">
-                    <figcaption>Spot price</figcaption>
-                </figure>
-                </div>
-            </div>
-        </section>
-
         <!-- DOWNLOAD / VAULT DOOR -->
         <section id="download" class="vault-door">
             <div class="vault-door-glow" aria-hidden="true"></div>
@@ -256,61 +212,15 @@
             <span class="rivet bl" aria-hidden="true"></span>
             <span class="rivet br" aria-hidden="true"></span>
 
-            <div class="vault-door-inner">
-                <div class="vault-door-visual">
-                    <svg class="dial dial--sm" viewBox="0 0 200 200" role="img" aria-hidden="true">
-                        <defs>
-                            <radialGradient id="dialFaceSm" cx="50%" cy="38%" r="72%">
-                                <stop offset="0%" stop-color="#2b2216" />
-                                <stop offset="100%" stop-color="#17130f" />
-                            </radialGradient>
-                        </defs>
+            <div class="vault-door-content">
+                <p class="eyebrow eyebrow--flanked">Get started</p>
+                <h2>Start your collection today.</h2>
+                <p class="vault-door-copy">No account. No subscription. No server ever sees your gold.</p>
 
-                        <circle class="dial-face" cx="100" cy="100" r="58" fill="url(#dialFaceSm)" />
-                        <circle class="dial-ring" cx="100" cy="100" r="92" />
-                        <circle class="dial-ring dial-ring--bevel" cx="100" cy="100" r="88" />
-                        <circle class="dial-ring dial-ring--inner" cx="100" cy="100" r="60" />
-
-                        <line class="dial-tick dial-tick--major" x1="100.0" y1="8.0" x2="100.0" y2="22.0" />
-                        <line class="dial-tick" x1="123.8" y1="11.1" x2="121.7" y2="18.9" />
-                        <line class="dial-tick" x1="146.0" y1="20.3" x2="142.0" y2="27.3" />
-                        <line class="dial-tick" x1="165.1" y1="34.9" x2="159.4" y2="40.6" />
-                        <line class="dial-tick" x1="179.7" y1="54.0" x2="172.7" y2="58.0" />
-                        <line class="dial-tick" x1="188.9" y1="76.2" x2="181.1" y2="78.3" />
-                        <line class="dial-tick dial-tick--major" x1="192.0" y1="100.0" x2="178.0" y2="100.0" />
-                        <line class="dial-tick" x1="188.9" y1="123.8" x2="181.1" y2="121.7" />
-                        <line class="dial-tick" x1="179.7" y1="146.0" x2="172.7" y2="142.0" />
-                        <line class="dial-tick" x1="165.1" y1="165.1" x2="159.4" y2="159.4" />
-                        <line class="dial-tick" x1="146.0" y1="179.7" x2="142.0" y2="172.7" />
-                        <line class="dial-tick" x1="123.8" y1="188.9" x2="121.7" y2="181.1" />
-                        <line class="dial-tick dial-tick--major" x1="100.0" y1="192.0" x2="100.0" y2="178.0" />
-                        <line class="dial-tick" x1="76.2" y1="188.9" x2="78.3" y2="181.1" />
-                        <line class="dial-tick" x1="54.0" y1="179.7" x2="58.0" y2="172.7" />
-                        <line class="dial-tick" x1="34.9" y1="165.1" x2="40.6" y2="159.4" />
-                        <line class="dial-tick" x1="20.3" y1="146.0" x2="27.3" y2="142.0" />
-                        <line class="dial-tick" x1="11.1" y1="123.8" x2="18.9" y2="121.7" />
-                        <line class="dial-tick dial-tick--major" x1="8.0" y1="100.0" x2="22.0" y2="100.0" />
-                        <line class="dial-tick" x1="11.1" y1="76.2" x2="18.9" y2="78.3" />
-                        <line class="dial-tick" x1="20.3" y1="54.0" x2="27.3" y2="58.0" />
-                        <line class="dial-tick" x1="34.9" y1="34.9" x2="40.6" y2="40.6" />
-                        <line class="dial-tick" x1="54.0" y1="20.3" x2="58.0" y2="27.3" />
-                        <line class="dial-tick" x1="76.2" y1="11.1" x2="78.3" y2="18.9" />
-
-                        <text class="dial-label" x="100" y="94" text-anchor="middle">UNLOCK</text>
-                        <text class="dial-fine" x="100" y="114" text-anchor="middle">YOUR VAULT</text>
-                    </svg>
-                </div>
-
-                <div class="vault-door-content">
-                    <p class="eyebrow">Get started</p>
-                    <h2>Start your collection today.</h2>
-                    <p class="vault-door-copy">No account. No subscription. No server ever sees your gold.</p>
-
-                    <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank" rel="noopener noreferrer"
-                        class="play-badge">
-                        <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
-                    </a>
-                </div>
+                <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank" rel="noopener noreferrer"
+                    class="play-badge">
+                    <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
+                </a>
             </div>
         </section>
 

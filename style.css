@@ -244,9 +244,40 @@ h1, h2, h3 {
 }
 
 .hero-visual {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(circle at center, rgba(201, 164, 85, 0.16), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-stats {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.hero-stats .stat {
+    text-align: left;
+    padding: 0 0 0 22px;
+    border-left: 2px solid var(--border);
+}
+
+.hero-stats .stat-num {
+    font-size: 1.5rem;
 }
 
 .dial {
@@ -301,26 +332,12 @@ h1, h2, h3 {
 }
 
 /* =========================================================
-   STATS
+   STATS (shared with .hero-stats)
    ========================================================= */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 40px 0;
-    margin-bottom: 96px;
-}
 
 .stat {
     text-align: center;
     padding: 0 16px;
-    border-left: 1px solid var(--border);
-}
-
-.stat:first-child {
-    border-left: none;
 }
 
 .stat-num {
@@ -428,42 +445,17 @@ h1, h2, h3 {
     padding-bottom: 108px;
 }
 
-.rack-scroll {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-bright) transparent;
-    scroll-snap-type: x proximity;
-}
-
-.rack-scroll::-webkit-scrollbar {
-    height: 6px;
-}
-
-.rack-scroll::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.rack-scroll::-webkit-scrollbar-thumb {
-    background: var(--border-bright);
-    border-radius: 3px;
-}
-
-.rack-row {
-    display: flex;
-    align-items: flex-start;
+.rack-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 16px;
-    width: max-content;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 4px 4px 14px;
 }
 
 .monitor {
     position: relative;
-    width: 164px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
+    width: 100%;
     background: linear-gradient(160deg, var(--panel-2), var(--bg-alt));
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -516,8 +508,9 @@ h1, h2, h3 {
 
 .vault-door {
     position: relative;
+    text-align: center;
     margin-bottom: 96px;
-    padding: 64px 60px;
+    padding: 84px 60px;
     background:
         radial-gradient(ellipse at 50% 0%, rgba(201, 164, 85, 0.12), transparent 62%),
         linear-gradient(180deg, var(--panel), var(--panel-2));
@@ -535,6 +528,7 @@ h1, h2, h3 {
     right: 12%;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    z-index: 2;
 }
 
 .vault-door::after {
@@ -545,6 +539,7 @@ h1, h2, h3 {
     border-radius: 8px;
     pointer-events: none;
     opacity: 0.7;
+    z-index: 2;
 }
 
 .vault-door-glow {
@@ -556,28 +551,30 @@ h1, h2, h3 {
     height: 420px;
     background: radial-gradient(ellipse at center, rgba(201, 164, 85, 0.16), transparent 70%);
     pointer-events: none;
-}
-
-.vault-door-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 64px;
-}
-
-.vault-door-visual {
-    flex-shrink: 0;
-}
-
-.dial--sm {
-    width: 176px;
+    z-index: 0;
 }
 
 .vault-door-content {
-    max-width: 460px;
-    text-align: left;
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.eyebrow--flanked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.eyebrow--flanked::before,
+.eyebrow--flanked::after {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: var(--gold-dim);
+    opacity: 0.7;
 }
 
 .vault-door-copy {
@@ -592,6 +589,7 @@ h1, h2, h3 {
     border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, var(--gold-dim), #1a140c 75%);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 3px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
 .rivet.tl { top: 20px; left: 20px; }
@@ -658,9 +656,17 @@ h1, h2, h3 {
         margin-right: auto;
     }
 
+    .hero-stats {
+        align-items: flex-start;
+        margin: 0 auto;
+    }
+
     .hero-visual {
-        order: -1;
-        margin-bottom: 12px;
+        margin-top: 32px;
+    }
+
+    .hero-phone {
+        width: 220px;
     }
 
     .dial {
@@ -670,45 +676,22 @@ h1, h2, h3 {
     .box-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .rack-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 640px;
+        margin: 0 auto;
+        gap: 20px 16px;
+    }
 }
 
 @media (max-width: 720px) {
-    .stats {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .stat {
-        border-left: none;
-        border-top: 1px solid var(--border);
-        padding-top: 20px;
-    }
-
-    .stat:first-child {
-        border-top: none;
-        padding-top: 0;
-    }
-
     .box-grid {
         grid-template-columns: 1fr;
     }
 
     .vault-door {
-        padding: 56px 24px;
-    }
-
-    .vault-door-inner {
-        flex-direction: column;
-        gap: 32px;
-        text-align: center;
-    }
-
-    .vault-door-content {
-        text-align: center;
-    }
-
-    .dial--sm {
-        width: 148px;
+        padding: 64px 24px;
     }
 
     .boxes, .rack {
@@ -717,7 +700,26 @@ h1, h2, h3 {
 }
 
 @media (max-width: 460px) {
+    .rack-grid {
+        gap: 10px 8px;
+    }
+
     .monitor {
-        width: 150px;
+        padding: 6px 6px 26px;
+        border-radius: 8px;
+    }
+
+    .monitor figcaption {
+        font-size: 0.56rem;
+        bottom: 7px;
+    }
+
+    .monitor-bolt {
+        width: 5px;
+        height: 5px;
+    }
+
+    .monitor-bolt.bl, .monitor-bolt.br {
+        bottom: 16px;
     }
 }
