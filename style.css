@@ -213,6 +213,24 @@ h1, h2, h3 {
     font-size: 0.85rem;
 }
 
+.btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--border-bright);
+    box-shadow: none;
+}
+
+.btn.ghost:hover {
+    border-color: var(--gold);
+    box-shadow: none;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 /* =========================================================
    HERO
    ========================================================= */
@@ -706,6 +724,15 @@ h1, h2, h3 {
 }
 
 @media (max-width: 460px) {
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .nav .btn.small {
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+
     .rack-grid {
         gap: 10px 8px;
     }

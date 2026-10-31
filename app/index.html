@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // Relative links need the trailing slash when served at /app
+        if (/\/app$/.test(location.pathname)) location.replace(location.pathname + '/' + location.search + location.hash);
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goldivio - My collection</title>
+    <meta name="description" content="Your gold and silver collection, kept privately in this browser. No accounts, no servers.">
+    <link rel="icon" type="image/png" href="../logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Shared gradients for bullion icons -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f6df9f" />
+                <stop offset="0.5" stop-color="#c9a455" />
+                <stop offset="1" stop-color="#8f723f" />
+            </linearGradient>
+            <linearGradient id="g-gold-top" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fbeab8" />
+                <stop offset="1" stop-color="#d9b866" />
+            </linearGradient>
+            <linearGradient id="g-silver" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f4f5f7" />
+                <stop offset="0.5" stop-color="#b4b8bf" />
+                <stop offset="1" stop-color="#7b8089" />
+            </linearGradient>
+            <linearGradient id="g-silver-top" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff" />
+                <stop offset="1" stop-color="#cfd3d9" />
+            </linearGradient>
+            <linearGradient id="g-gold-edge" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fbeab8" />
+                <stop offset="0.5" stop-color="#c9a455" />
+                <stop offset="1" stop-color="#7a5f30" />
+            </linearGradient>
+            <linearGradient id="g-gold-face" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f3d98f" />
+                <stop offset="0.55" stop-color="#d4b062" />
+                <stop offset="1" stop-color="#b38d45" />
+            </linearGradient>
+            <radialGradient id="g-gold-radial" cx="0.35" cy="0.3" r="0.85">
+                <stop offset="0" stop-color="#f8e6aa" />
+                <stop offset="0.55" stop-color="#d1ad5e" />
+                <stop offset="1" stop-color="#9a7a3c" />
+            </radialGradient>
+            <linearGradient id="g-silver-edge" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff" />
+                <stop offset="0.5" stop-color="#b4b8bf" />
+                <stop offset="1" stop-color="#6b7079" />
+            </linearGradient>
+            <linearGradient id="g-silver-face" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#eceef1" />
+                <stop offset="0.55" stop-color="#c3c7ce" />
+                <stop offset="1" stop-color="#a0a5ad" />
+            </linearGradient>
+            <radialGradient id="g-silver-radial" cx="0.35" cy="0.3" r="0.85">
+                <stop offset="0" stop-color="#fafbfc" />
+                <stop offset="0.55" stop-color="#c5c9d0" />
+                <stop offset="1" stop-color="#8b9099" />
+            </radialGradient>
+            <linearGradient id="g-shine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.55" />
+                <stop offset="0.45" stop-color="#ffffff" stop-opacity="0" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="page">
+
+        <nav class="nav">
+            <div class="nav-inner">
+                <a class="logo" href="../index.html" style="text-decoration:none">
+                    <img src="../logo.png" alt="Goldivio logo" class="logo-img">
+                    <span>Goldivio</span>
+                </a>
+                <div class="nav-actions">
+                    <button type="button" class="btn small ghost keep" id="settingsBtn">Settings</button>
+                    <button type="button" class="btn small ghost" id="exportBtn">Export</button>
+                    <label class="btn small ghost" for="importFile">Import</label>
+                    <input type="file" id="importFile" accept="application/json" hidden>
+                </div>
+            </div>
+        </nav>
+
+        <header class="app-head">
+            <p class="eyebrow">Stored in this browser only</p>
+            <h1>My collection</h1>
+        </header>
+
+        <div class="add-wrap" id="addWrap">
+            <button type="button" class="btn big" id="addBtn">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14" /></svg>
+                Add bullion
+            </button>
+        </div>
+
+        <!-- SUMMARY -->
+        <section class="summary" id="summary" aria-label="Collection summary"></section>
+        <p class="summary-note" id="summaryNote"></p>
+
+        <!-- FILTERS -->
+        <section class="filters" aria-label="Filters">
+            <div class="chips" id="metalChips" role="group" aria-label="Metal">
+                <button type="button" class="chip is-active" data-metal="all">All metals</button>
+                <button type="button" class="chip" data-metal="GOLD">Gold</button>
+                <button type="button" class="chip" data-metal="SILVER">Silver</button>
+            </div>
+            <div class="chips" id="typeChips" role="group" aria-label="Type">
+                <button type="button" class="chip is-active" data-type="all">Bars and coins</button>
+                <button type="button" class="chip" data-type="BAR">Bars</button>
+                <button type="button" class="chip" data-type="COIN">Coins</button>
+            </div>
+        </section>
+
+        <!-- COLLECTION -->
+        <section id="grid" class="grid" aria-live="polite"></section>
+
+        <div id="empty" class="empty" hidden>
+            <svg viewBox="0 0 120 80" class="empty-icon" aria-hidden="true">
+                <path d="M22 62 L36 24 H84 L98 62 Z" fill="url(#g-gold)" />
+                <path d="M36 24 H84 L80 32 H40 Z" fill="url(#g-gold-top)" />
+            </svg>
+            <h2>Your vault is empty</h2>
+            <p>Add your first bar or coin. It stays on this device and will be here when you come back.</p>
+            <button type="button" class="btn big" id="emptyAdd">Add bullion</button>
+        </div>
+
+        <aside class="backup-note">
+            <span class="backup-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none"><rect x="7" y="14" width="18" height="14" rx="2.5" /><path d="M11 14v-4a5 5 0 0 1 10 0v4" /><circle cx="16" cy="20" r="1.8" fill="currentColor" stroke="none" /></svg>
+            </span>
+            <div class="backup-text">
+                <h3>Private and local</h3>
+                <p>Goldivio runs entirely in your browser. Your collection and prices are never sent to any server or third-party service, and Goldivio never looks up the current gold and silver price online.</p>
+                <p>Your collection is saved only in this browser on this device. If you clear your browser data or open Goldivio on another device, it will not be there. Press Export backup to save a copy as a file, and use Import to load it back.</p>
+            </div>
+            <button type="button" class="btn small ghost" id="exportBtn2">Export backup</button>
+        </aside>
+
+        <footer class="footer">
+            <span class="footer-line">
+                <span class="status-dot" aria-hidden="true"></span>
+                Goldivio
+            </span>
+        </footer>
+
+    </div>
+
+    <!-- ADD / EDIT DIALOG (3-step wizard) -->
+    <dialog id="formDialog" class="dlg dlg-wizard">
+        <form id="bullionForm" method="dialog" novalidate>
+            <div class="dlg-head">
+                <h2 id="formTitle">Add bullion</h2>
+                <button type="button" class="x" data-close aria-label="Close">&times;</button>
+            </div>
+
+            <div class="stepper" id="stepper">
+                <div class="stepper-track" aria-hidden="true"><div class="stepper-fill" id="stepperFill"></div></div>
+                <button type="button" class="step is-active" data-step="1">
+                    <span class="step-dot"><span class="step-num">1</span><svg class="step-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.8" /></svg></span>
+                    <span class="step-name">Piece</span>
+                </button>
+                <button type="button" class="step" data-step="2">
+                    <span class="step-dot"><span class="step-num">2</span><svg class="step-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.8" /></svg></span>
+                    <span class="step-name">Purchase</span>
+                </button>
+                <button type="button" class="step" data-step="3">
+                    <span class="step-dot"><span class="step-num">3</span><svg class="step-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.8" /></svg></span>
+                    <span class="step-name">Details</span>
+                </button>
+            </div>
+
+            <div class="dlg-body wiz-body">
+
+                <!-- STEP 1 -->
+                <section class="wiz-panel" data-panel="1">
+                    <header class="wiz-head">
+                        <p class="wiz-kicker">Step 1 of 3</p>
+                        <h3>The piece</h3>
+                        <p class="wiz-sub">What are you adding to your collection?</p>
+                    </header>
+
+                    <div class="row">
+                        <div class="field">
+                            <span class="field-label" id="lblMetal">Metal</span>
+                            <div class="seg" role="radiogroup" aria-labelledby="lblMetal">
+                                <label class="seg-opt seg-gold"><input type="radio" name="metalType" value="GOLD" checked><span>Gold</span></label>
+                                <label class="seg-opt seg-silver"><input type="radio" name="metalType" value="SILVER"><span>Silver</span></label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <span class="field-label" id="lblType">Type</span>
+                            <div class="seg" role="radiogroup" aria-labelledby="lblType">
+                                <label class="seg-opt seg-bar"><input type="radio" name="bullionType" value="BAR" checked><span>Bar</span></label>
+                                <label class="seg-opt seg-coin"><input type="radio" name="bullionType" value="COIN"><span>Coin</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row keep">
+                        <label class="grow">Weight
+                            <input name="weight" type="number" step="any" min="0" inputmode="decimal" required>
+                        </label>
+                        <div class="field unit">
+                            <span class="field-label" id="lblUnit">Unit</span>
+                            <div class="seg" role="radiogroup" aria-labelledby="lblUnit">
+                                <label class="seg-opt"><input type="radio" name="weightUnit" value="GRAM" checked><span>g</span></label>
+                                <label class="seg-opt"><input type="radio" name="weightUnit" value="OZ"><span>oz</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label>Brand
+                            <input name="brand" type="text" placeholder="Refinery, Mint, Manufacturer" autocomplete="off">
+                        </label>
+                    </div>
+
+                    <!-- Serial number (bars) or series (coins) lives here -->
+                    <div class="row"><div class="slot" id="slotA">
+                        <label class="f-serial">Serial number
+                            <input name="serialNumber" type="text" autocomplete="off">
+                        </label>
+                    </div></div>
+                </section>
+
+                <!-- STEP 2 -->
+                <section class="wiz-panel" data-panel="2" hidden>
+                    <header class="wiz-head">
+                        <p class="wiz-kicker">Step 2 of 3</p>
+                        <h3>The purchase</h3>
+                        <p class="wiz-sub">What did you pay, and when?</p>
+                    </header>
+
+                    <div class="row">
+                        <label>Price paid <span class="cur"></span>
+                            <input name="purchasePrice" type="number" step="any" min="0" inputmode="decimal" required>
+                        </label>
+                        <label>Purchase date
+                            <input name="purchaseDate" type="date" required>
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label>Receipt number
+                            <input name="receiptNumber" type="text" autocomplete="off">
+                        </label>
+                    </div>
+                    <p class="hint">Prices use the currency in your settings (<span class="cur-name"></span>).</p>
+                </section>
+
+                <!-- STEP 3 -->
+                <section class="wiz-panel" data-panel="3" hidden>
+                    <header class="wiz-head">
+                        <p class="wiz-kicker">Step 3 of 3</p>
+                        <h3>The details</h3>
+                        <p class="wiz-sub">All optional. Add what you have and skip the rest.</p>
+                    </header>
+
+                    <div class="row">
+                        <!-- Series (bars) or serial number (coins) lives here -->
+                        <div class="slot" id="slotB">
+                            <label class="f-series">Series
+                                <input name="series" type="text" placeholder="Kangaroo, Panda, Maple Leaf" autocomplete="off">
+                            </label>
+                        </div>
+                        <label>Mint year
+                            <input name="year" type="number" step="1" min="0" max="2100" inputmode="numeric">
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label>Edition
+                            <input name="edition" type="text" placeholder="Anniversary edition, Lunar edition" autocomplete="off">
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label>Country
+                            <input name="country" type="text" autocomplete="off">
+                        </label>
+                        <label>Store
+                            <input name="store" type="text" autocomplete="off">
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label>Certificate number
+                            <input name="certificateNumber" type="text" autocomplete="off">
+                        </label>
+                        <label>Spot price per oz at purchase <span class="cur"></span>
+                            <input name="spotPricePerOzAtPurchaseTime" type="number" step="any" min="0" inputmode="decimal">
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label>Note
+                            <textarea name="note" rows="3"></textarea>
+                        </label>
+                    </div>
+                </section>
+
+                <p class="form-error" id="formError" role="alert" hidden></p>
+            </div>
+
+            <div class="dlg-foot">
+                <button type="button" class="btn ghost" id="backBtn">Cancel</button>
+                <button type="submit" class="btn" id="nextBtn">Next</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- SETTINGS DIALOG -->
+    <dialog id="settingsDialog" class="dlg dlg-narrow">
+        <form id="settingsForm" method="dialog" novalidate>
+            <div class="dlg-head">
+                <h2>Settings</h2>
+                <button type="button" class="x" data-close aria-label="Close">&times;</button>
+            </div>
+
+            <div class="dlg-body">
+                <fieldset>
+                    <legend>Currency</legend>
+                    <label>Show all prices in
+                        <select name="currency"></select>
+                    </label>
+                    <p class="hint">Changing the currency does not convert your prices. The amounts you entered stay the same and are shown in the new currency.</p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Your spot prices</legend>
+                    <div class="row">
+                        <label>Gold, per oz <span class="cur"></span>
+                            <input name="goldSpot" type="number" step="any" min="0" inputmode="decimal">
+                        </label>
+                        <label>Silver, per oz <span class="cur"></span>
+                            <input name="silverSpot" type="number" step="any" min="0" inputmode="decimal">
+                        </label>
+                    </div>
+                    <p class="hint">You choose the prices, so your valuation always uses numbers you trust. No price feeds, no tracking, nothing leaves your device. Update them whenever you like.</p>
+                </fieldset>
+            </div>
+
+            <div class="dlg-foot">
+                <button type="button" class="btn ghost" data-close>Cancel</button>
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- DETAIL DIALOG -->
+    <dialog id="detailDialog" class="dlg">
+        <div class="dlg-head">
+            <h2 id="detailTitle">Details</h2>
+            <button type="button" class="x" data-close aria-label="Close">&times;</button>
+        </div>
+        <div class="dlg-body" id="detailBody"></div>
+        <div class="dlg-foot">
+            <button type="button" class="btn ghost danger" id="deleteBtn">Delete</button>
+            <button type="button" class="btn" id="editBtn">Edit</button>
+        </div>
+    </dialog>
+
+    <script src="../script.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
