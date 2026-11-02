@@ -1,14 +1,26 @@
-// Goldivio - subtle scroll reveal for deposit boxes and rack
-// monitors, plus a frosted state for the sticky nav once the page
-// scrolls. Respects prefers-reduced-motion; degrades gracefully if
+// Goldivio - scroll reveal for the hero, screenshots and
+// download card; a frosted sticky nav with hysteresis (no flicker
+// near the threshold); and a gentle parallax on the hero phones.
+// Respects prefers-reduced-motion; degrades gracefully if
 // IntersectionObserver isn't available.
 
 (function () {
     var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var targets = document.querySelectorAll('.box, .monitor, .vault-door');
-    targets.forEach(function (el) {
+    // ---------- Scroll reveal ----------
+    var targets = document.querySelectorAll(
+        '.hero-copy-col, .hero-phones, .stats, .section-head, .shot, .cta'
+    );
+
+    targets.forEach(function (el, i) {
         el.classList.add('reveal');
+    });
+
+    // Stagger siblings inside the same grid so rows cascade in.
+    document.querySelectorAll('.tour-grid').forEach(function (grid) {
+        Array.prototype.forEach.call(grid.children, function (child, i) {
+            child.style.transitionDelay = (i % 3) * 140 + 'ms';
+        });
     });
 
     if (prefersReduced || typeof IntersectionObserver === 'undefined') {
@@ -25,7 +37,7 @@
                     }
                 });
             },
-            { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+            { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
         );
 
         targets.forEach(function (el) {
@@ -33,29 +45,40 @@
         });
     }
 
-    // Sticky nav: switch to a frosted state once the page scrolls
-    // past a small threshold.
+    // ---------- Sticky nav + hero parallax ----------
     var nav = document.querySelector('.nav');
-    if (nav) {
-        var THRESHOLD = 8;
-        var ticking = false;
+    var heroPhones = document.querySelector('.hero-phones');
+    var SHOW_AT = 40;
+    var HIDE_AT = 12;
+    var scrolled = false;
+    var ticking = false;
 
-        function updateNav() {
-            if (window.scrollY > THRESHOLD) {
+    function update() {
+        var y = window.scrollY;
+
+        if (nav) {
+            if (!scrolled && y > SHOW_AT) {
+                scrolled = true;
                 nav.classList.add('nav--scrolled');
-            } else {
+            } else if (scrolled && y < HIDE_AT) {
+                scrolled = false;
                 nav.classList.remove('nav--scrolled');
             }
-            ticking = false;
         }
 
-        window.addEventListener('scroll', function () {
-            if (!ticking) {
-                window.requestAnimationFrame(updateNav);
-                ticking = true;
-            }
-        }, { passive: true });
+        if (heroPhones && !prefersReduced) {
+            heroPhones.style.setProperty('--p', Math.min(y, 700));
+        }
 
-        updateNav();
+        ticking = false;
     }
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    update();
 })();

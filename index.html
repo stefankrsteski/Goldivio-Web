@@ -23,15 +23,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <div class="grain" aria-hidden="true"></div>
 
     <div class="page">
 
@@ -43,21 +41,18 @@
                     <span>Goldivio</span>
                 </div>
 
-                <div class="nav-actions">
-                    <a href="app/" class="btn small ghost nav-web">Web app</a>
-                    <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn small">
-                        Get the app
-                    </a>
-                </div>
+                <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn small">
+                    Get the app
+                </a>
             </div>
         </nav>
 
         <!-- HERO -->
-        <section class="hero">
-            <div class="hero-content">
+        <header class="hero">
+            <div class="hero-copy-col">
                 <p class="eyebrow">A private vault for your precious metals</p>
 
-                <h1>Know what you own.</h1>
+                <h1>Know <span class="gold-text">what you own.</span></h1>
 
                 <p class="hero-copy">
                     Goldivio is your personal tracker for gold and silver - log every bar and coin,
@@ -65,186 +60,161 @@
                     No accounts. No servers. No one else ever sees it.
                 </p>
 
-                <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn">Download on Google Play</a>
+                <div class="hero-cta">
+                    <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank"
+                        rel="noopener noreferrer" class="play-badge">
+                        <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
+                    </a>
+                    <span class="hero-note">Free on Android</span>
+                </div>
             </div>
 
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-num">100%</span>
-                    <span class="stat-label">Offline by design</span>
+            <div class="hero-phones" aria-label="Goldivio app screens">
+                <div class="hero-ring" aria-hidden="true"></div>
+
+                <div class="phone phone--side phone--left">
+                    <img src="screenshot_chart.png" alt="Goldivio value chart">
                 </div>
-                <div class="stat">
-                    <span class="stat-num">Biometric</span>
-                    <span class="stat-label">Security</span>
+                <div class="phone phone--main">
+                    <img src="screenshot_grid.png" alt="Goldivio collection grid">
                 </div>
-                <div class="stat">
-                    <span class="stat-num">256&#8209;bit</span>
-                    <span class="stat-label">On&#8209;device encryption</span>
+                <div class="phone phone--side phone--right">
+                    <img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview">
                 </div>
+            </div>
+        </header>
+
+        <!-- STATS STRIP -->
+        <section class="stats">
+            <div class="stat">
+                <span class="stat-num">100%</span>
+                <span class="stat-label">Offline by design</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">Biometric</span>
+                <span class="stat-label">Security</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">256&#8209;bit</span>
+                <span class="stat-label">On&#8209;device encryption</span>
             </div>
         </section>
 
-        <!-- SCREENSHOTS / RACK -->
-        <section class="rack">
-            <div class="section-head">
-                <p class="eyebrow">Your investment, smarter.</p>
-                <h2>Your portfolio, visualized.</h2>
-            </div>
-
-            <div class="rack-grid">
-                <figure class="monitor">
-                    <div class="monitor-frame">
-                        <span class="monitor-bolt tl" aria-hidden="true"></span>
-                        <span class="monitor-bolt tr" aria-hidden="true"></span>
-                        <span class="monitor-bolt bl" aria-hidden="true"></span>
-                        <span class="monitor-bolt br" aria-hidden="true"></span>
-                        <div class="monitor-screen">
-                            <img src="screenshot_grid.png" alt="Goldivio collection grid" loading="lazy">
-                        </div>
-                    </div>
-                    <figcaption>Collection grid</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <div class="monitor-frame">
-                        <span class="monitor-bolt tl" aria-hidden="true"></span>
-                        <span class="monitor-bolt tr" aria-hidden="true"></span>
-                        <span class="monitor-bolt bl" aria-hidden="true"></span>
-                        <span class="monitor-bolt br" aria-hidden="true"></span>
-                        <div class="monitor-screen">
-                            <img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview" loading="lazy">
-                        </div>
-                    </div>
-                    <figcaption>Bullion detail</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <div class="monitor-frame">
-                        <span class="monitor-bolt tl" aria-hidden="true"></span>
-                        <span class="monitor-bolt tr" aria-hidden="true"></span>
-                        <span class="monitor-bolt bl" aria-hidden="true"></span>
-                        <span class="monitor-bolt br" aria-hidden="true"></span>
-                        <div class="monitor-screen">
-                            <img src="screenshot_receipt.png" alt="Goldivio receipt attachment" loading="lazy">
-                        </div>
-                    </div>
-                    <figcaption>Receipt overview</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <div class="monitor-frame">
-                        <span class="monitor-bolt tl" aria-hidden="true"></span>
-                        <span class="monitor-bolt tr" aria-hidden="true"></span>
-                        <span class="monitor-bolt bl" aria-hidden="true"></span>
-                        <span class="monitor-bolt br" aria-hidden="true"></span>
-                        <div class="monitor-screen">
-                            <img src="screenshot_chart.png" alt="Goldivio value chart" loading="lazy">
-                        </div>
-                    </div>
-                    <figcaption>Value chart</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <div class="monitor-frame">
-                        <span class="monitor-bolt tl" aria-hidden="true"></span>
-                        <span class="monitor-bolt tr" aria-hidden="true"></span>
-                        <span class="monitor-bolt bl" aria-hidden="true"></span>
-                        <span class="monitor-bolt br" aria-hidden="true"></span>
-                        <div class="monitor-screen">
-                            <img src="screenshot_design_bar.png" alt="Goldivio bar detail view" loading="lazy">
-                        </div>
-                    </div>
-                    <figcaption>Bullion design</figcaption>
-                </figure>
-                <figure class="monitor">
-                    <div class="monitor-frame">
-                        <span class="monitor-bolt tl" aria-hidden="true"></span>
-                        <span class="monitor-bolt tr" aria-hidden="true"></span>
-                        <span class="monitor-bolt bl" aria-hidden="true"></span>
-                        <span class="monitor-bolt br" aria-hidden="true"></span>
-                        <div class="monitor-screen">
-                            <img src="screenshot_spot_price.png" alt="Goldivio spot price settings" loading="lazy">
-                        </div>
-                    </div>
-                    <figcaption>Spot price</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <!-- DEPOSIT BOXES / FEATURES -->
-        <section class="boxes">
+        <!-- APP TOUR (screenshots carry the feature copy) -->
+        <section class="tour">
             <div class="section-head">
                 <p class="eyebrow">Inside the vault</p>
-                <h2>Everything about your collection, in one place.</h2>
+                <h2>Everything about your collection, <span class="gold-text">in one place.</span></h2>
             </div>
 
-            <div class="box-grid">
+            <div class="tour-grid">
 
-                <div class="box">
-                    <span class="box-icon">
-                        <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="19" width="24" height="6" rx="1.5" /><rect x="6" y="12" width="20" height="6" rx="1.5" /><rect x="8" y="5" width="16" height="6" rx="1.5" /></svg>
-                    </span>
-                    <h3>Portfolio, at a glance</h3>
-                    <p>Every bar and coin organized in one collection you can scan in seconds.</p>
-                </div>
+                <figure class="shot">
+                    <div class="phone">
+                        <img src="screenshot_grid.png" alt="Goldivio collection grid" loading="lazy">
+                    </div>
+                    <figcaption>
+                        <span class="shot-icon">
+                            <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="19" width="24" height="6" rx="1.5" /><rect x="6" y="12" width="20" height="6" rx="1.5" /><rect x="8" y="5" width="16" height="6" rx="1.5" /></svg>
+                        </span>
+                        <span class="shot-num">01</span>
+                        <h3>Portfolio, at a glance</h3>
+                        <p>Every bar and coin organized in one collection you can scan in seconds.</p>
+                    </figcaption>
+                </figure>
 
-                <div class="box">
-                    <span class="box-icon">
-                        <svg viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="8" rx="11" ry="4" /><path d="M5 8v8c0 2.2 4.9 4 11 4s11-1.8 11-4V8" /><path d="M5 16v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8" /></svg>
-                    </span>
-                    <h3>Gold &amp; silver, your way</h3>
-                    <p>Add your bars and coins and record the details that make each one unique.</p>
-                </div>
+                <figure class="shot">
+                    <div class="phone">
+                        <img src="screenshot_chart.png" alt="Goldivio value chart" loading="lazy">
+                    </div>
+                    <figcaption>
+                        <span class="shot-icon">
+                            <svg viewBox="0 0 32 32" fill="none"><path d="M4 27V15" /><path d="M12 27V9" /><path d="M20 27V17" /><path d="M28 27V5" /><path d="M4 27h24" /></svg>
+                        </span>
+                        <span class="shot-num">02</span>
+                        <h3>Performance, per piece</h3>
+                        <p>Every bar and coin has its own chart, so you can see exactly how it's performed.</p>
+                    </figcaption>
+                </figure>
 
-                <div class="box">
-                    <span class="box-icon">
-                        <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="9" width="26" height="18" rx="2.5" /><circle cx="16" cy="18" r="6" /><rect x="11" y="5" width="8" height="4" rx="1" /></svg>
-                    </span>
-                    <h3>Photos &amp; receipts</h3>
-                    <p>Attach a photo and the receipt, so provenance is never a question later.</p>
-                </div>
+                <figure class="shot">
+                    <div class="phone">
+                        <img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview" loading="lazy">
+                    </div>
+                    <figcaption>
+                        <span class="shot-icon">
+                            <svg viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="8" rx="11" ry="4" /><path d="M5 8v8c0 2.2 4.9 4 11 4s11-1.8 11-4V8" /><path d="M5 16v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8" /></svg>
+                        </span>
+                        <span class="shot-num">03</span>
+                        <h3>Gold &amp; silver, your way</h3>
+                        <p>Add your bars and coins and record the details that make each one unique.</p>
+                    </figcaption>
+                </figure>
 
-                <div class="box">
-                    <span class="box-icon">
-                        <svg viewBox="0 0 32 32" fill="none"><rect x="7" y="14" width="18" height="14" rx="2.5" /><path d="M11 14v-4a5 5 0 0 1 10 0v4" /><circle cx="16" cy="20" r="1.8" fill="currentColor" stroke="none" /></svg>
-                    </span>
-                    <h3>Sealed on device</h3>
-                    <p>Biometric lock and local encryption keep the vault shut. Nothing leaves your device.</p>
-                </div>
+                <figure class="shot">
+                    <div class="phone">
+                        <img src="screenshot_receipt.png" alt="Goldivio receipt attachment" loading="lazy">
+                    </div>
+                    <figcaption>
+                        <span class="shot-icon">
+                            <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="9" width="26" height="18" rx="2.5" /><circle cx="16" cy="18" r="6" /><rect x="11" y="5" width="8" height="4" rx="1" /></svg>
+                        </span>
+                        <span class="shot-num">04</span>
+                        <h3>Photos &amp; receipts</h3>
+                        <p>Attach a photo and the receipt, so provenance is never a question later.</p>
+                    </figcaption>
+                </figure>
 
-                <div class="box">
-                    <span class="box-icon">
-                        <svg viewBox="0 0 32 32" fill="none"><path d="M4 27V15" /><path d="M12 27V9" /><path d="M20 27V17" /><path d="M28 27V5" /><path d="M4 27h24" /></svg>
-                    </span>
-                    <h3>Performance, per piece</h3>
-                    <p>Every bar and coin has its own chart, so you can see exactly how it's performed.</p>
-                </div>
+                <figure class="shot">
+                    <div class="phone">
+                        <img src="screenshot_design_bar.png" alt="Goldivio bar detail view" loading="lazy">
+                    </div>
+                    <figcaption>
+                        <span class="shot-icon">
+                            <svg viewBox="0 0 32 32" fill="none"><path d="M16 3 L18.8 13.2 L29 16 L18.8 18.8 L16 29 L13.2 18.8 L3 16 L13.2 13.2 Z" /></svg>
+                        </span>
+                        <span class="shot-num">05</span>
+                        <h3>Built to explore</h3>
+                        <p>Parallax depth and interactive views make browsing feel tactile and physical.</p>
+                    </figcaption>
+                </figure>
 
-                <div class="box">
-                    <span class="box-icon">
-                        <svg viewBox="0 0 32 32" fill="none"><path d="M16 3 L18.8 13.2 L29 16 L18.8 18.8 L16 29 L13.2 18.8 L3 16 L13.2 13.2 Z" /></svg>
-                    </span>
-                    <h3>Built to explore</h3>
-                    <p>Parallax depth and interactive views make browsing feel tactile and physical.</p>
-                </div>
+                <figure class="shot">
+                    <div class="phone">
+                        <img src="screenshot_spot_price.png" alt="Goldivio spot price settings" loading="lazy">
+                    </div>
+                    <figcaption>
+                        <span class="shot-icon">
+                            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" /><path d="M16 9v14" /><path d="M20 12.5c-.8-1-2.2-1.5-4-1.5-2.2 0-4 1-4 2.6 0 3.6 8 1.8 8 5.4 0 1.6-1.8 2.6-4 2.6-1.8 0-3.300-.6-4-1.700" /></svg>
+                        </span>
+                        <span class="shot-num">06</span>
+                        <h3>Spot price</h3>
+                        <p>Set the spot price and see your numbers update instantly.</p>
+                    </figcaption>
+                </figure>
 
             </div>
         </section>
 
-        <!-- DOWNLOAD / VAULT DOOR -->
-        <section id="download" class="vault-door">
-            <div class="vault-door-texture" aria-hidden="true"></div>
+        <!-- DOWNLOAD -->
+        <section id="download" class="cta">
+            <div class="cta-texture" aria-hidden="true"></div>
 
-            <span class="rivet tl" aria-hidden="true"></span>
-            <span class="rivet tr" aria-hidden="true"></span>
-            <span class="rivet bl" aria-hidden="true"></span>
-            <span class="rivet br" aria-hidden="true"></span>
-
-            <div class="vault-door-content">
+            <div class="cta-content">
                 <p class="eyebrow eyebrow--flanked">Get started</p>
-                <h2>Start your collection today.</h2>
-                <p class="vault-door-copy">No account. No subscription. No server ever sees your gold.</p>
+                <h2>Start your collection <span class="gold-text">today.</span></h2>
+                <p class="cta-copy">No account. No subscription. No server ever sees your gold.</p>
 
-                <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank" rel="noopener noreferrer"
-                    class="play-badge">
+                <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank"
+                    rel="noopener noreferrer" class="play-badge">
                     <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
                 </a>
+            </div>
+
+            <div class="cta-phones" aria-hidden="true">
+                <div class="phone"><img src="screenshot_receipt.png" alt=""></div>
+                <div class="phone"><img src="screenshot_grid.png" alt=""></div>
+                <div class="phone"><img src="screenshot_spot_price.png" alt=""></div>
             </div>
         </section>
 
