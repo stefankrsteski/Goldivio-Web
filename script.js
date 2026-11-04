@@ -1,23 +1,24 @@
-// Goldivio - scroll reveal for the hero, screenshots and
-// download card; a frosted sticky nav with hysteresis (no flicker
-// near the threshold); and a gentle parallax on the hero phones.
-// Respects prefers-reduced-motion; degrades gracefully if
-// IntersectionObserver isn't available.
+// Goldivio - scroll reveal for the gallery, features, FAQ and download
+// card; a frosted sticky nav with hysteresis (no flicker near the
+// threshold); a gentle parallax on the two side hero phones; and a
+// one-at-a-time FAQ. Respects prefers-reduced-motion; degrades
+// gracefully if IntersectionObserver isn't available. The hero itself
+// is never hidden by script, so the first paint is always complete.
 
 (function () {
     var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // ---------- Scroll reveal ----------
     var targets = document.querySelectorAll(
-        '.hero-copy-col, .hero-phones, .stats, .section-head, .shot, .cta'
+        '.section-head, .row-label, .shot, .feat, .stats, .faq-list, .cta'
     );
 
-    targets.forEach(function (el, i) {
+    targets.forEach(function (el) {
         el.classList.add('reveal');
     });
 
     // Stagger siblings inside the same grid so rows cascade in.
-    document.querySelectorAll('.tour-grid').forEach(function (grid) {
+    document.querySelectorAll('.row-grid, .feat-grid').forEach(function (grid) {
         Array.prototype.forEach.call(grid.children, function (child, i) {
             child.style.transitionDelay = (i % 3) * 140 + 'ms';
         });
@@ -47,7 +48,7 @@
 
     // ---------- Sticky nav + hero parallax ----------
     var nav = document.querySelector('.nav');
-    var heroPhones = document.querySelector('.hero-phones');
+    var stage = document.querySelector('.stage');
     var SHOW_AT = 40;
     var HIDE_AT = 12;
     var scrolled = false;
@@ -66,8 +67,8 @@
             }
         }
 
-        if (heroPhones && !prefersReduced) {
-            heroPhones.style.setProperty('--p', Math.min(y, 700));
+        if (stage && !prefersReduced) {
+            stage.style.setProperty('--p', Math.min(y, 700));
         }
 
         ticking = false;
@@ -81,4 +82,16 @@
     }, { passive: true });
 
     update();
+
+    // ---------- FAQ: keep one answer open at a time ----------
+    var items = document.querySelectorAll('.faq-list details');
+
+    items.forEach(function (item) {
+        item.addEventListener('toggle', function () {
+            if (!item.open) return;
+            items.forEach(function (other) {
+                if (other !== item) other.removeAttribute('open');
+            });
+        });
+    });
 })();

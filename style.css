@@ -1,34 +1,47 @@
 /* =========================================================
-   GOLDIVIO - "Phone First"
-   Brown + gold palette, rebuilt around the mobile app:
-   a phone-led hero, a captioned screenshot tour that always
-   sits in rows of three, and a download card with phones
-   rising from its base. Type: Sora (display) + Inter (text).
+   GOLDIVIO - "Screens First"
+   The app screenshots are the page. A dark hero hands off to
+   a parchment gallery: three big phones straddle the seam,
+   then six screens sit in rows of three, always. Dark and
+   parchment bands alternate down the page.
+   Type: Lora (display, italic gold accents) + Inter (text).
    No glow effects - depth comes from flat dark shadows,
    hairline borders and gold gradients only.
    ========================================================= */
 
 :root {
-    --bg: #15110d;
-    --bg-alt: #1b1510;
-    --panel: #231b13;
-    --panel-2: #2a2016;
-    --border: #3a2f20;
-    --border-bright: #54432a;
+    /* dark bands */
+    --bg: #160d07;
+    --bg-2: #22130a;
+    --panel: #2a190d;
+    --border: #43301c;
+    --border-bright: #5e4527;
+
+    /* parchment bands */
+    --parch: #ebe0c2;
+    --parch-2: #f3ead2;
+    --line-light: #cdb98a;
 
     --gold: #c9a455;
     --gold-bright: #ecd291;
     --gold-dim: #8f723f;
+    --gold-ink: #6f5018;
 
     --ink: #f3ecdc;
-    --ink-muted: #b0a48d;
-    --ink-faint: #75694f;
+    --ink-muted: #bfb29a;
+    --ink-faint: #8f8168;
 
-    --display: 'Sora', 'Inter', sans-serif;
-    --sans: 'Inter', system-ui, sans-serif;
+    --brown: #2b1810;
+    --brown-muted: #5a4532;
+
+    --display: 'Lora', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
     --container: 1140px;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* width of the centre hero phone - everything on the stage scales from it */
+    --w: clamp(128px, 33vw, 372px);
 }
 
 /* =========================================================
@@ -55,6 +68,7 @@ body {
 
 img {
     max-width: 100%;
+    height: auto;
     display: block;
 }
 
@@ -62,9 +76,13 @@ a {
     color: inherit;
 }
 
+ul {
+    list-style: none;
+}
+
 ::selection {
     background: var(--gold);
-    color: #15110d;
+    color: #160d07;
 }
 
 :focus-visible {
@@ -73,11 +91,39 @@ a {
     border-radius: 4px;
 }
 
-.page {
+.band--light :focus-visible {
+    outline-color: var(--gold-ink);
+}
+
+.skip {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 100;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: var(--gold-bright);
+    color: #160d07;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.2s var(--ease);
+}
+
+.skip:focus {
+    top: 12px;
+}
+
+.wrap {
     max-width: var(--container);
     margin: 0 auto;
     padding: 0 24px;
 }
+
+section[id] {
+    scroll-margin-top: 72px;
+}
+
+/* ---------- type ---------- */
 
 .eyebrow {
     display: block;
@@ -90,20 +136,93 @@ a {
     margin-bottom: 16px;
 }
 
+.band--light .eyebrow {
+    color: var(--gold-ink);
+}
+
 h1, h2, h3 {
     font-family: var(--display);
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     color: var(--ink);
 }
 
+.band--light h1,
+.band--light h2,
+.band--light h3 {
+    color: var(--brown);
+}
+
 .gold-text {
+    font-style: italic;
     background: linear-gradient(115deg, var(--gold-bright) 0%, var(--gold) 55%, var(--gold-dim) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+    padding-right: 0.06em;
 }
+
+.band--light .gold-text {
+    background: linear-gradient(115deg, #a47a26 0%, #86621c 55%, #6f5018 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.eyebrow--flanked {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.eyebrow--flanked::before,
+.eyebrow--flanked::after {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+}
+
+/* ---------- bands ---------- */
+
+.band {
+    position: relative;
+}
+
+.band--dark {
+    background: var(--bg);
+    color: var(--ink);
+}
+
+.band--light {
+    background: linear-gradient(180deg, var(--parch-2) 0%, var(--parch) 100%);
+    color: var(--brown);
+}
+
+.section-head {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 56px;
+}
+
+.section-head h2 {
+    font-size: clamp(1.8rem, 2.4vw + 1rem, 2.8rem);
+    line-height: 1.15;
+}
+
+.section-sub {
+    margin-top: 16px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+}
+
+.band--light .section-sub {
+    color: var(--brown-muted);
+}
+
+/* ---------- motion ---------- */
 
 .reveal {
     opacity: 0;
@@ -116,9 +235,15 @@ h1, h2, h3 {
     transform: translateY(0);
 }
 
+@keyframes rise {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
+    .ph img { animation: none !important; }
     .status-dot { animation: none !important; }
 }
 
@@ -130,14 +255,14 @@ h1, h2, h3 {
     position: sticky;
     top: 0;
     z-index: 50;
-    padding: 20px 0;
+    padding: 18px 0;
     background: transparent;
     border-bottom: 1px solid transparent;
     transition: background 0.4s var(--ease), border-color 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
 }
 
 .nav--scrolled {
-    background: rgba(21, 17, 13, 0.86);
+    background: rgba(22, 13, 7, 0.86);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--border);
@@ -147,6 +272,7 @@ h1, h2, h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
 }
 
 .logo {
@@ -154,14 +280,41 @@ h1, h2, h3 {
     align-items: center;
     gap: 10px;
     font-family: var(--display);
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
+    text-decoration: none;
+    color: var(--ink);
 }
 
 .logo-img {
     height: 30px;
+    width: auto;
     object-fit: contain;
+}
+
+.nav-links {
+    display: none;
+    margin-left: auto;
+    gap: 28px;
+}
+
+.nav-links a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.25s var(--ease);
+}
+
+.nav-links a:hover {
+    color: var(--gold-bright);
+}
+
+@media (min-width: 820px) {
+    .nav-links {
+        display: flex;
+    }
 }
 
 .status-dot {
@@ -195,7 +348,7 @@ h1, h2, h3 {
     text-decoration: none;
     letter-spacing: 0.005em;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 10px 20px -12px rgba(0, 0, 0, 0.6);
-    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    transition: transform 0.25s var(--ease);
 }
 
 .btn:hover {
@@ -218,6 +371,7 @@ h1, h2, h3 {
 
 .play-badge img {
     width: 190px;
+    height: auto;
     transition: transform 0.25s var(--ease);
 }
 
@@ -226,69 +380,55 @@ h1, h2, h3 {
 }
 
 /* =========================================================
-   PHONE FRAME (shared)
-   ========================================================= */
-
-.phone {
-    position: relative;
-    background: #0b0805;
-    border: 1px solid var(--border-bright);
-    border-radius: clamp(16px, 2.6vw, 34px);
-    padding: clamp(3px, 0.6vw, 8px);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 34px 50px -28px rgba(0, 0, 0, 0.85);
-}
-
-.phone::before {
-    content: '';
-    position: absolute;
-    top: 22%;
-    right: -3px;
-    width: 3px;
-    height: 12%;
-    border-radius: 0 3px 3px 0;
-    background: var(--border-bright);
-}
-
-.phone img {
-    width: 100%;
-    aspect-ratio: 9 / 18;
-    object-fit: cover;
-    border-radius: clamp(13px, 2vw, 26px);
-    background: var(--panel);
-}
-
-/* =========================================================
    HERO
    ========================================================= */
 
 .hero {
-    display: grid;
-    grid-template-columns: 1.05fr 1fr;
-    align-items: center;
-    gap: 48px;
-    padding: 48px 0 24px;
+    display: flow-root;              /* keep the stage's negative margin inside the hero */
+    z-index: 2;
+    margin-top: -67px;               /* tuck under the sticky nav */
+    padding-top: 67px;
+    background: linear-gradient(180deg, #120a05 0%, var(--bg) 40%, var(--bg-2) 100%);
 }
 
-.hero h1 {
-    font-size: clamp(2.6rem, 5vw + 0.8rem, 4.6rem);
-    line-height: 1.05;
-    letter-spacing: -0.035em;
-    margin-bottom: 24px;
+.dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(243, 236, 220, 0.10) 1.1px, transparent 1.1px);
+    background-size: 14px 14px;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
+    mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .hero-copy {
-    max-width: 520px;
+    position: relative;
+    text-align: center;
+    padding-top: clamp(28px, 5vw, 64px);
+}
+
+.hero h1 {
+    font-size: clamp(2.15rem, 4.2vw + 0.9rem, 4.5rem);
+    line-height: 1.07;
+    letter-spacing: -0.025em;
+    max-width: 15em;
+    margin: 0 auto 22px;
+}
+
+.hero-lede {
+    max-width: 600px;
+    margin: 0 auto 32px;
     color: var(--ink-muted);
-    font-size: clamp(1rem, 0.4vw + 0.92rem, 1.1rem);
+    font-size: clamp(1rem, 0.4vw + 0.92rem, 1.12rem);
     line-height: 1.7;
-    margin-bottom: 36px;
 }
 
 .hero-cta {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 18px;
 }
 
 .hero-note {
@@ -296,96 +436,279 @@ h1, h2, h3 {
     color: var(--ink-faint);
 }
 
-.hero-phones {
+.chips {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 26px;
+}
+
+.chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.chips li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+/* ---------- the stage: three phones that straddle the seam ---------- */
+
+.stage {
     --p: 0;
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    align-items: center;
-    width: 100%;
-    max-width: 540px;
-    margin: 0 auto;
-    padding: 24px 0 8px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: clamp(32px, 5vw, 64px) auto calc(var(--w) * -1.22);
+    padding: 0 12px;
 }
 
-.hero-phones::before {
-    content: '';
-    position: absolute;
-    inset: -4% -8%;
-    background-image: radial-gradient(circle, rgba(243, 236, 220, 0.12) 1.1px, transparent 1.1px);
-    background-size: 14px 14px;
-    -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 0%, transparent 78%);
-    mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 0%, transparent 78%);
-    pointer-events: none;
-}
-
-.hero-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 112%;
-    aspect-ratio: 1;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 1px solid var(--border-bright);
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.hero-ring::after {
-    content: '';
-    position: absolute;
-    inset: 9%;
-    border-radius: 50%;
-    border: 1px dashed var(--border);
-}
-
-.hero-phones .phone {
+.ph {
+    margin: 0;
+    flex: none;
     position: relative;
-    z-index: 1;
-    will-change: transform;
 }
 
-.phone--main {
+.ph img {
+    width: 100%;
+    filter: drop-shadow(0 34px 40px rgba(20, 10, 4, 0.5));
+    animation: rise 0.95s var(--ease) both;
+}
+
+.ph--main {
+    width: var(--w);
     z-index: 2;
-    transform: translateY(calc(var(--p) * -0.09px));
 }
 
-.phone--side::after {
-    content: '';
+.ph--side {
+    width: calc(var(--w) * 0.86);
+    margin-top: calc(var(--w) * 0.16);
+}
+
+.ph--l {
+    margin-right: calc(var(--w) * -0.07);
+    transform: translateY(calc(var(--p) * -0.05px)) rotate(-4deg);
+    transform-origin: bottom right;
+}
+
+.ph--r {
+    margin-left: calc(var(--w) * -0.07);
+    transform: translateY(calc(var(--p) * -0.05px)) rotate(4deg);
+    transform-origin: bottom left;
+}
+
+.ph--l img { animation-delay: 0.12s; }
+.ph--r img { animation-delay: 0.2s; }
+
+/* =========================================================
+   SCREENSHOT TOUR (parchment band, always rows of three)
+   ========================================================= */
+
+.tour {
+    padding-top: calc(var(--w) * 1.22 + clamp(48px, 7vw, 96px));
+    padding-bottom: 120px;
+    overflow: hidden;
+}
+
+.engrave {
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: rgba(21, 17, 13, 0.34);
+    top: 14%;
+    width: min(46vw, 560px);
+    aspect-ratio: 520 / 899;
+    background: url('engraving.webp') center / contain no-repeat;
+    opacity: 0.2;
+    mix-blend-mode: multiply;
     pointer-events: none;
 }
 
-.phone--left {
-    margin-right: -9%;
-    transform: translateY(calc(26px + var(--p) * -0.05px)) rotate(-6deg);
+.engrave--l {
+    left: -14%;
+    transform: scaleX(-1) rotate(-6deg);
 }
 
-.phone--right {
-    margin-left: -9%;
-    transform: translateY(calc(26px + var(--p) * -0.05px)) rotate(6deg);
+.engrave--r {
+    right: -14%;
+    top: 52%;
+    transform: rotate(8deg);
+}
+
+.tour .wrap {
+    position: relative;
+}
+
+.row-label {
+    margin: 0 0 40px;
+}
+
+.row-label:not(:first-of-type) {
+    margin-top: clamp(56px, 8vw, 104px);
+}
+
+.row-grid {
+    --step: clamp(0px, 5vw, 72px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(36px, 5vw, 72px) clamp(10px, 3.4vw, 52px);
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+.shot {
+    position: relative;
+}
+
+/* centre phone sits highest; the outer two sit slightly lower */
+.shot:nth-child(3n + 1),
+.shot:nth-child(3n) {
+    margin-top: var(--step);
+}
+
+.shot-phone img {
+    width: 100%;
+    filter: drop-shadow(0 30px 34px rgba(43, 24, 16, 0.4));
+    transition: transform 0.45s var(--ease);
+}
+
+.shot:hover .shot-phone img {
+    transform: translateY(-8px);
+}
+
+.shot figcaption {
+    position: relative;
+    margin-top: 28px;
+    padding-top: 20px;
+    text-align: left;
+    border-top: 1px solid var(--line-light);
+}
+
+/* short gold rule on the caption's top border */
+.shot figcaption::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 36px;
+    height: 2px;
+    background: var(--gold-ink);
+}
+
+.shot-num {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gold-ink);
+}
+
+.shot h3 {
+    font-size: 1.2rem;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    padding-right: 32px;
+}
+
+.shot p {
+    color: var(--brown-muted);
+    font-size: 0.93rem;
+    line-height: 1.6;
 }
 
 /* =========================================================
-   STATS STRIP
+   FEATURES
    ========================================================= */
+
+.features {
+    padding: 112px 0 96px;
+}
+
+.feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.feat {
+    padding: 28px 26px 30px;
+    background: linear-gradient(180deg, var(--panel), #231409);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+}
+
+.feat-icon {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    background: rgba(201, 164, 85, 0.08);
+    border: 1px solid var(--border-bright);
+    border-radius: 13px;
+    margin-bottom: 18px;
+}
+
+.feat-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.feat h3 {
+    font-size: 1.12rem;
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+.feat p {
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   PRIVACY (stats band)
+   ========================================================= */
+
+.privacy {
+    padding: 0 0 112px;
+}
+
+.privacy .section-head {
+    margin-bottom: 44px;
+}
 
 .stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin: 56px 0 104px;
-    padding: 30px 0;
+    padding: 36px 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
 
 .stat {
     text-align: center;
-    padding: 0 12px;
+    padding: 0 18px;
     border-left: 1px solid var(--border);
 }
 
@@ -396,9 +719,9 @@ h1, h2, h3 {
 .stat-num {
     display: block;
     font-family: var(--display);
-    font-size: clamp(1.05rem, 2.4vw + 0.3rem, 2.2rem);
+    font-size: clamp(1.1rem, 2.6vw + 0.3rem, 2.3rem);
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     color: var(--gold-bright);
     margin-bottom: 8px;
 }
@@ -406,147 +729,94 @@ h1, h2, h3 {
 .stat-label {
     display: block;
     font-size: clamp(0.62rem, 0.9vw + 0.3rem, 0.85rem);
-    color: var(--ink-faint);
+    font-weight: 500;
+    color: var(--ink);
     letter-spacing: 0.02em;
+    margin-bottom: 10px;
 }
 
-/* =========================================================
-   SECTION HEAD (shared)
-   ========================================================= */
-
-.section-head {
-    text-align: center;
-    max-width: 620px;
-    margin: 0 auto 64px;
-}
-
-.section-head h2 {
-    font-size: clamp(1.8rem, 2.4vw + 1rem, 2.7rem);
-    line-height: 1.15;
-}
-
-.section-sub {
-    margin-top: 16px;
-    color: var(--ink-muted);
-    line-height: 1.65;
-}
-
-/* =========================================================
-   APP TOUR (screenshots, always rows of three)
-   ========================================================= */
-
-.tour {
-    padding-bottom: 112px;
-}
-
-.tour-grid {
-    --step: clamp(0px, 5vw, 72px);
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(36px, 5vw, 72px) clamp(10px, 3vw, 44px);
-    max-width: 1040px;
+.stat p {
+    color: var(--ink-faint);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    max-width: 240px;
     margin: 0 auto;
 }
 
-.shot {
+/* =========================================================
+   FAQ
+   ========================================================= */
+
+.faq-band {
+    padding: 104px 0 112px;
+}
+
+.faq-band .section-head {
+    margin-bottom: 40px;
+}
+
+.faq-list {
+    max-width: 780px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line-light);
+}
+
+.faq-list details {
+    border-bottom: 1px solid var(--line-light);
+}
+
+.faq-list summary {
     position: relative;
-}
-
-/* Middle phone sits highest; the outer two sit slightly lower. */
-.shot:nth-child(3n + 1),
-.shot:nth-child(3n) {
-    margin-top: var(--step);
-}
-
-.shot .phone {
-    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
-}
-
-.shot:hover .phone {
-    transform: translateY(-8px);
-    border-color: var(--gold-dim);
-}
-
-.shot figcaption {
-    position: relative;
-    margin-top: 26px;
-    padding-top: 20px;
-    text-align: left;
-    border-top: 1px solid var(--border);
-}
-
-/* short gold rule on the caption's top border */
-.shot figcaption::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 36px;
-    height: 1px;
-    background: var(--gold);
-}
-
-.shot-icon {
-    display: flex;
-    width: 42px;
-    height: 42px;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    background: rgba(201, 164, 85, 0.08);
-    border: 1px solid var(--border-bright);
-    border-radius: 13px;
-    margin-bottom: 16px;
-    transition: transform 0.35s var(--ease), border-color 0.35s var(--ease);
-}
-
-.shot:hover .shot-icon {
-    transform: rotate(-8deg);
-    border-color: var(--gold-dim);
-}
-
-.shot-icon svg {
-    width: 22px;
-    height: 22px;
-    stroke: currentColor;
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.shot-num {
-    position: absolute;
-    top: 20px;
-    right: 0;
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 48px 22px 0;
     font-family: var(--display);
-    font-size: 0.78rem;
+    font-size: 1.14rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--ink-faint);
+    line-height: 1.35;
+    color: var(--brown);
 }
 
-.shot h3 {
-    font-size: 1.12rem;
-    line-height: 1.25;
-    margin-bottom: 8px;
+.faq-list summary::-webkit-details-marker {
+    display: none;
 }
 
-.shot p {
-    color: var(--ink-muted);
-    font-size: 0.92rem;
-    line-height: 1.6;
+.faq-list summary::after {
+    content: '+';
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--sans);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--gold-ink);
+}
+
+.faq-list details[open] summary::after {
+    content: '-';
+}
+
+.faq-list details p {
+    padding: 0 48px 24px 0;
+    color: var(--brown-muted);
+    line-height: 1.7;
+    font-size: 0.98rem;
 }
 
 /* =========================================================
    DOWNLOAD CTA
    ========================================================= */
 
+.download {
+    padding: 96px 0;
+}
+
 .cta {
     position: relative;
     text-align: center;
-    margin-bottom: 96px;
     padding: 84px 40px 0;
-    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    background: linear-gradient(180deg, var(--panel), #301d0f);
     border: 1px solid var(--border);
     border-radius: 28px;
     overflow: hidden;
@@ -565,35 +835,19 @@ h1, h2, h3 {
 .cta-content {
     position: relative;
     z-index: 1;
-    max-width: 520px;
+    max-width: 540px;
     margin: 0 auto;
 }
 
 .cta h2 {
-    font-size: clamp(1.8rem, 2.4vw + 1rem, 2.7rem);
+    font-size: clamp(1.8rem, 2.4vw + 1rem, 2.8rem);
     line-height: 1.15;
     margin-bottom: 16px;
 }
 
-.eyebrow--flanked {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-}
-
-.eyebrow--flanked::before,
-.eyebrow--flanked::after {
-    content: '';
-    width: 26px;
-    height: 1px;
-    background: var(--gold-dim);
-    opacity: 0.7;
-}
-
 .cta-copy {
     color: var(--ink-muted);
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 32px;
 }
 
@@ -610,8 +864,13 @@ h1, h2, h3 {
     overflow: hidden;
 }
 
-.cta-phones .phone:nth-child(odd) {
+.cta-phone:nth-child(odd) {
     margin-top: clamp(14px, 3vw, 34px);
+}
+
+.cta-phone img {
+    width: 100%;
+    filter: drop-shadow(0 20px 24px rgba(0, 0, 0, 0.5));
 }
 
 /* =========================================================
@@ -619,15 +878,19 @@ h1, h2, h3 {
    ========================================================= */
 
 .footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 36px 0 56px;
     border-top: 1px solid var(--border);
     color: var(--ink-faint);
     font-size: 0.8rem;
     letter-spacing: 0.03em;
     text-align: center;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .footer-line {
@@ -641,33 +904,23 @@ h1, h2, h3 {
     height: 6px;
 }
 
+.footer-legal {
+    font-size: 0.72rem;
+    opacity: 0.7;
+    letter-spacing: 0.01em;
+}
+
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
 @media (max-width: 900px) {
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 36px;
-        padding-top: 28px;
-        text-align: center;
-    }
-
-    .hero-copy {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-cta {
-        justify-content: center;
-    }
-
-    .hero-phones {
-        max-width: 460px;
+    .feat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .shot h3 {
-        font-size: 1rem;
+        font-size: 1.02rem;
     }
 
     .shot p {
@@ -676,35 +929,39 @@ h1, h2, h3 {
 }
 
 @media (max-width: 720px) {
-    .page {
+    .wrap {
         padding: 0 16px;
     }
 
-    .stats {
-        margin: 40px 0 80px;
-        padding: 22px 0;
+    .nav {
+        padding: 14px 0;
     }
 
-    .stat {
-        padding: 0 6px;
+    .hero {
+        margin-top: -59px;
+        padding-top: 59px;
     }
 
     .section-head {
-        margin-bottom: 44px;
+        margin-bottom: 40px;
     }
 
     .tour {
         padding-bottom: 84px;
     }
 
+    .row-label {
+        margin-bottom: 28px;
+    }
+
     /* Still rows of three: compact captions beneath each phone */
-    .tour-grid {
+    .row-grid {
         --step: 18px;
         gap: 24px 8px;
     }
 
     .shot figcaption {
-        margin-top: 12px;
+        margin-top: 14px;
         padding-top: 12px;
     }
 
@@ -712,43 +969,88 @@ h1, h2, h3 {
         width: 22px;
     }
 
-    .shot-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 9px;
-        margin-bottom: 10px;
-    }
-
-    .shot-icon svg {
-        width: 15px;
-        height: 15px;
-    }
-
     .shot-num {
         top: 12px;
-        font-size: 0.6rem;
+        font-size: 0.72rem;
     }
 
     .shot h3 {
-        font-size: 0.76rem;
+        font-size: 0.8rem;
         line-height: 1.25;
         margin-bottom: 6px;
+        padding-right: 14px;
     }
 
     .shot p {
-        font-size: 0.66rem;
+        font-size: 0.68rem;
         line-height: 1.45;
     }
 
-    .shot:hover .phone,
-    .shot:hover .shot-icon {
+    .shot:hover .shot-phone img {
         transform: none;
+    }
+
+    .features {
+        padding: 80px 0 72px;
+    }
+
+    .feat-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .feat {
+        padding: 22px 20px 24px;
+    }
+
+    .feat-icon {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 14px;
+    }
+
+    .chips {
+        gap: 6px;
+        margin-top: 22px;
+    }
+
+    .chips li {
+        padding: 6px 10px;
+        gap: 6px;
+        font-size: 0.7rem;
+    }
+
+    .privacy {
+        padding-bottom: 80px;
+    }
+
+    .stats {
+        padding: 26px 0;
+    }
+
+    .stat {
+        padding: 0 8px;
+    }
+
+    .stat p {
+        font-size: 0.72rem;
+    }
+
+    .faq-band {
+        padding: 76px 0 84px;
+    }
+
+    .faq-list summary {
+        font-size: 1.02rem;
+    }
+
+    .download {
+        padding: 64px 0;
     }
 
     .cta {
         padding: 60px 20px 0;
         border-radius: 22px;
-        margin-bottom: 72px;
     }
 
     .eyebrow--flanked::before,
@@ -756,4 +1058,3 @@ h1, h2, h3 {
         width: 16px;
     }
 }
-

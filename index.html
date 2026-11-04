@@ -14,219 +14,500 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goldivio</title>
+
+    <!-- Primary SEO -->
+    <title>Goldivio - Gold &amp; Silver Portfolio Tracker for Android</title>
     <meta name="description"
-        content="Track your gold and silver portfolio with Goldivio. Manage bars, coins, prices, and profit in one place. No accounts, no subscriptions, fully offline and secure.">
+        content="Goldivio is an offline gold and silver portfolio tracker for Android. Log bullion bars and coins, track value and profit. Encrypted on your device. No account.">
+    <link rel="canonical" href="https://goldivio.com/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#160d07">
+    <meta name="author" content="Goldivio">
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Goldivio">
+    <meta property="og:title" content="Goldivio - Gold &amp; Silver Portfolio Tracker for Android">
+    <meta property="og:description"
+        content="Log every gold and silver bar and coin, see its value and profit, and keep it all encrypted on your phone. 100% offline. No account, no subscription.">
+    <meta property="og:url" content="https://goldivio.com/">
+    <meta property="og:image" content="https://goldivio.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Goldivio gold and silver portfolio tracker app screens on an Android phone">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Goldivio - Gold &amp; Silver Portfolio Tracker for Android">
+    <meta name="twitter:description"
+        content="Offline gold and silver portfolio tracker. Log bullion bars and coins, track value and profit, fully private.">
+    <meta name="twitter:image" content="https://goldivio.com/og-image.png">
+
     <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
 
+    <!-- Hero image is the largest paint on the page -->
+    <link rel="preload" as="image" type="image/webp" href="screenshot_holdings-720.webp"
+        imagesrcset="screenshot_holdings-360.webp 360w, screenshot_holdings-720.webp 720w, screenshot_holdings-1092.webp 1092w"
+        imagesizes="(min-width: 1100px) 372px, 33vw" fetchpriority="high">
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Structured data: the Android app -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Goldivio - Gold & Silver Portfolio Tracker",
+        "alternateName": "Goldivio",
+        "description": "Goldivio is an offline gold and silver portfolio tracker for Android. Log bullion bars and coins, set the spot price, and track portfolio value, invested amount and profit. Data is encrypted on your device with optional biometric lock.",
+        "url": "https://goldivio.com/",
+        "operatingSystem": "Android",
+        "applicationCategory": "FinanceApplication",
+        "installUrl": "https://play.google.com/store/apps/details?id=krski.gld",
+        "downloadUrl": "https://play.google.com/store/apps/details?id=krski.gld",
+        "image": "https://goldivio.com/og-image.png",
+        "screenshot": [
+            "https://goldivio.com/screenshot_holdings-1092.webp",
+            "https://goldivio.com/screenshot_collection-1092.webp",
+            "https://goldivio.com/screenshot_design-1092.webp",
+            "https://goldivio.com/screenshot_receipt-1092.webp",
+            "https://goldivio.com/screenshot_chart-1092.webp",
+            "https://goldivio.com/screenshot_spot_price-1092.webp"
+        ],
+        "featureList": [
+            "Track gold and silver bars and coins",
+            "Portfolio value, invested amount, profit and loss",
+            "Custom gold and silver spot price per ounce",
+            "Receipts, certificates and photos for every piece",
+            "Fully offline with on-device encryption",
+            "Biometric fingerprint or face unlock"
+        ],
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "inLanguage": "en"
+    }
+    </script>
+
+    <!-- Structured data: FAQ (mirrors the visible FAQ section) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Goldivio?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Goldivio is an offline gold and silver portfolio tracker for Android. You log your bullion bars and coins, set the spot price, and the app shows your portfolio value, invested amount and profit or loss."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Goldivio work without an internet connection?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Goldivio runs fully offline. There is no cloud sync, no sign-up and no server. Everything stays on your device."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does Goldivio show live gold and silver prices?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Goldivio never fetches prices from the internet. You set the current gold and silver spot price per ounce yourself, and the value of your whole collection updates instantly. This is what keeps the app private and offline."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my gold and silver data private and secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Your data is encrypted and stored only on your device. It is never uploaded anywhere. You can also lock the app with fingerprint or face unlock."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What can I track with Goldivio?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Gold and silver bars and coins from any mint or refinery. For each piece you can record weight in grams or ounces, brand, series, edition, serial number, purchase price and date, and storage location, and attach receipts, certificates of authenticity and photos."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is Goldivio free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Goldivio is free to download on Google Play for Android. There are no accounts and no subscriptions."
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
 
-    <div class="page">
+    <a class="skip" href="#main">Skip to content</a>
 
-        <!-- NAV -->
-        <nav class="nav">
-            <div class="nav-inner">
-                <div class="logo">
-                    <img src="logo.png" alt="Goldivio logo" class="logo-img">
-                    <span>Goldivio</span>
-                </div>
+    <!-- NAV -->
+    <nav class="nav" aria-label="Main">
+        <div class="wrap nav-inner">
+            <a class="logo" href="/">
+                <img src="logo.png" alt="Goldivio logo" class="logo-img" width="30" height="30">
+                <span>Goldivio</span>
+            </a>
 
-                <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn small">
-                    Get the app
-                </a>
-            </div>
-        </nav>
+            <ul class="nav-links">
+                <li><a href="#screens">Screenshots</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
 
-        <!-- HERO -->
-        <header class="hero">
-            <div class="hero-copy-col">
-                <p class="eyebrow">A private vault for your precious metals</p>
+            <a href="https://play.google.com/store/apps/details?id=krski.gld" class="btn small">
+                Get the app
+            </a>
+        </div>
+    </nav>
 
-                <h1>Know <span class="gold-text">what you own.</span></h1>
+    <main id="main">
 
-                <p class="hero-copy">
-                    Goldivio is your personal tracker for gold and silver - log every bar and coin,
-                    watch what your collection is worth, and keep it sealed on your device.
-                    No accounts. No servers. No one else ever sees it.
+        <!-- HERO: copy first, then three big screens that straddle the dark and light bands -->
+        <section class="hero band band--dark" aria-labelledby="hero-title">
+            <div class="dots" aria-hidden="true"></div>
+
+            <div class="wrap hero-copy">
+                <p class="eyebrow">Offline app for Android</p>
+
+                <h1 id="hero-title">Gold &amp; silver portfolio tracker, <span class="gold-text">fully offline.</span></h1>
+
+                <p class="hero-lede">
+                    Goldivio helps bullion investors and stackers log every bar and coin, see its value and
+                    profit at today's spot price, and keep it all encrypted on their own phone.
+                    No account. No subscription.
                 </p>
 
                 <div class="hero-cta">
                     <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank"
                         rel="noopener noreferrer" class="play-badge">
-                        <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
+                        <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get Goldivio on Google Play"
+                            width="190" height="74">
                     </a>
                     <span class="hero-note">Free on Android</span>
                 </div>
+
+                <ul class="chips" aria-label="Highlights">
+                    <li>100% offline</li>
+                    <li>Biometric lock</li>
+                    <li>256-bit encryption</li>
+                </ul>
             </div>
 
-            <div class="hero-phones" aria-label="Goldivio app screens">
-                <div class="hero-ring" aria-hidden="true"></div>
-
-                <div class="phone phone--side phone--left">
-                    <img src="screenshot_chart.png" alt="Goldivio value chart">
-                </div>
-                <div class="phone phone--main">
-                    <img src="screenshot_grid.png" alt="Goldivio collection grid">
-                </div>
-                <div class="phone phone--side phone--right">
-                    <img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview">
-                </div>
-            </div>
-        </header>
-
-        <!-- STATS STRIP -->
-        <section class="stats">
-            <div class="stat">
-                <span class="stat-num">100%</span>
-                <span class="stat-label">Offline by design</span>
-            </div>
-            <div class="stat">
-                <span class="stat-num">Biometric</span>
-                <span class="stat-label">Security</span>
-            </div>
-            <div class="stat">
-                <span class="stat-num">256&#8209;bit</span>
-                <span class="stat-label">On&#8209;device encryption</span>
+            <div class="stage" aria-label="Goldivio app screens">
+                <figure class="ph ph--side ph--l">
+                    <img src="screenshot_collection-720.webp"
+                        srcset="screenshot_collection-360.webp 360w, screenshot_collection-720.webp 720w"
+                        sizes="(min-width: 1100px) 320px, 28vw" width="1092" height="2436"
+                        alt="Gold and silver bar and coin collection grid in the Goldivio app">
+                </figure>
+                <figure class="ph ph--main">
+                    <img src="screenshot_holdings-720.webp"
+                        srcset="screenshot_holdings-360.webp 360w, screenshot_holdings-720.webp 720w, screenshot_holdings-1092.webp 1092w"
+                        sizes="(min-width: 1100px) 372px, 33vw" width="1092" height="2436" fetchpriority="high"
+                        alt="Goldivio gold and silver holdings screen with market value, invested amount and profit">
+                </figure>
+                <figure class="ph ph--side ph--r">
+                    <img src="screenshot_chart-720.webp"
+                        srcset="screenshot_chart-360.webp 360w, screenshot_chart-720.webp 720w"
+                        sizes="(min-width: 1100px) 320px, 28vw" width="1092" height="2436"
+                        alt="Profit chart showing current value, invested amount and profit for a gold bar">
+                </figure>
             </div>
         </section>
 
-        <!-- APP TOUR (screenshots carry the feature copy) -->
-        <section class="tour">
-            <div class="section-head">
-                <p class="eyebrow">Inside the vault</p>
-                <h2>Everything about your collection, <span class="gold-text">in one place.</span></h2>
+        <!-- SCREENSHOT TOUR: six screens, always rows of three -->
+        <section id="screens" class="tour band band--light" aria-labelledby="tour-title">
+            <div class="engrave engrave--l" aria-hidden="true"></div>
+            <div class="engrave engrave--r" aria-hidden="true"></div>
+
+            <div class="wrap">
+                <div class="section-head">
+                    <p class="eyebrow">Inside the app</p>
+                    <h2 id="tour-title">Every bar, every coin, <span class="gold-text">every dollar of profit.</span></h2>
+                    <p class="section-sub">A tour of the Goldivio gold and silver tracker, one screen at a time.</p>
+                </div>
+
+                <p class="eyebrow eyebrow--flanked row-label">Your collection</p>
+                <div class="row-grid">
+
+                    <figure class="shot">
+                        <div class="shot-phone">
+                            <img src="screenshot_holdings-720.webp"
+                                srcset="screenshot_holdings-360.webp 360w, screenshot_holdings-720.webp 720w, screenshot_holdings-1092.webp 1092w"
+                                sizes="(min-width: 1100px) 330px, 30vw" width="1092" height="2436" loading="lazy"
+                                alt="Goldivio portfolio overview listing gold and silver holdings with current market value and profit">
+                        </div>
+                        <figcaption>
+                            <span class="shot-num">01</span>
+                            <h3>Portfolio overview</h3>
+                            <p>Total gold and silver holdings, current market value, amount invested and profit at a glance.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <div class="shot-phone">
+                            <img src="screenshot_collection-720.webp"
+                                srcset="screenshot_collection-360.webp 360w, screenshot_collection-720.webp 720w, screenshot_collection-1092.webp 1092w"
+                                sizes="(min-width: 1100px) 330px, 30vw" width="1092" height="2436" loading="lazy"
+                                alt="Collection of gold bars, silver coins and gold coins with value and percentage gain on each card">
+                        </div>
+                        <figcaption>
+                            <span class="shot-num">02</span>
+                            <h3>Bars and coins, organized</h3>
+                            <p>Every gold and silver bar and coin on its own card, with value and percentage gain.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <div class="shot-phone">
+                            <img src="screenshot_design-720.webp"
+                                srcset="screenshot_design-360.webp 360w, screenshot_design-720.webp 720w, screenshot_design-1092.webp 1092w"
+                                sizes="(min-width: 1100px) 330px, 30vw" width="1092" height="2436" loading="lazy"
+                                alt="Choosing the engraved design for a 100 g gold bar when adding bullion in Goldivio">
+                        </div>
+                        <figcaption>
+                            <span class="shot-num">03</span>
+                            <h3>Pick the design</h3>
+                            <p>Add a bar or coin and choose the artwork that matches the piece in your hand.</p>
+                        </figcaption>
+                    </figure>
+
+                </div>
+
+                <p class="eyebrow eyebrow--flanked row-label">Every detail</p>
+                <div class="row-grid">
+
+                    <figure class="shot">
+                        <div class="shot-phone">
+                            <img src="screenshot_receipt-720.webp"
+                                srcset="screenshot_receipt-360.webp 360w, screenshot_receipt-720.webp 720w, screenshot_receipt-1092.webp 1092w"
+                                sizes="(min-width: 1100px) 330px, 30vw" width="1092" height="2436" loading="lazy"
+                                alt="Purchase receipt for a gold bar with serial number, certificate, spot price and premium">
+                        </div>
+                        <figcaption>
+                            <span class="shot-num">04</span>
+                            <h3>Receipts and provenance</h3>
+                            <p>Serial number, certificate, storage, spot value and the premium you paid, all on record.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <div class="shot-phone">
+                            <img src="screenshot_chart-720.webp"
+                                srcset="screenshot_chart-360.webp 360w, screenshot_chart-720.webp 720w, screenshot_chart-1092.webp 1092w"
+                                sizes="(min-width: 1100px) 330px, 30vw" width="1092" height="2436" loading="lazy"
+                                alt="Per-item gold profit chart showing current value, invested amount and profit in USD">
+                        </div>
+                        <figcaption>
+                            <span class="shot-num">05</span>
+                            <h3>Profit, per piece</h3>
+                            <p>Each bar and coin has its own chart of current value, invested amount and profit.</p>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="shot">
+                        <div class="shot-phone">
+                            <img src="screenshot_spot_price-720.webp"
+                                srcset="screenshot_spot_price-360.webp 360w, screenshot_spot_price-720.webp 720w, screenshot_spot_price-1092.webp 1092w"
+                                sizes="(min-width: 1100px) 330px, 30vw" width="1092" height="2436" loading="lazy"
+                                alt="Goldivio settings screen for setting the gold and silver spot price per ounce">
+                        </div>
+                        <figcaption>
+                            <span class="shot-num">06</span>
+                            <h3>Your spot price</h3>
+                            <p>Set the gold and silver spot price per ounce and every value updates instantly.</p>
+                        </figcaption>
+                    </figure>
+
+                </div>
             </div>
+        </section>
 
-            <div class="tour-grid">
+        <!-- FEATURES -->
+        <section id="features" class="features band band--dark" aria-labelledby="features-title">
+            <div class="wrap">
+                <div class="section-head">
+                    <p class="eyebrow">Why Goldivio</p>
+                    <h2 id="features-title">Built for gold and silver <span class="gold-text">stackers.</span></h2>
+                    <p class="section-sub">
+                        Whether you hold a few ounces or a vault of bullion, Goldivio keeps your precious metals
+                        investment in one clean, private place.
+                    </p>
+                </div>
 
-                <figure class="shot">
-                    <div class="phone">
-                        <img src="screenshot_grid.png" alt="Goldivio collection grid" loading="lazy">
-                    </div>
-                    <figcaption>
-                        <span class="shot-icon">
-                            <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="19" width="24" height="6" rx="1.5" /><rect x="6" y="12" width="20" height="6" rx="1.5" /><rect x="8" y="5" width="16" height="6" rx="1.5" /></svg>
+                <ul class="feat-grid">
+                    <li class="feat">
+                        <span class="feat-icon">
+                            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="19" width="24" height="6" rx="1.5" /><rect x="6" y="12" width="20" height="6" rx="1.5" /><rect x="8" y="5" width="16" height="6" rx="1.5" /></svg>
                         </span>
-                        <span class="shot-num">01</span>
-                        <h3>Portfolio, at a glance</h3>
-                        <p>Every bar and coin organized in one collection you can scan in seconds.</p>
-                    </figcaption>
-                </figure>
-
-                <figure class="shot">
-                    <div class="phone">
-                        <img src="screenshot_chart.png" alt="Goldivio value chart" loading="lazy">
-                    </div>
-                    <figcaption>
-                        <span class="shot-icon">
-                            <svg viewBox="0 0 32 32" fill="none"><path d="M4 27V15" /><path d="M12 27V9" /><path d="M20 27V17" /><path d="M28 27V5" /><path d="M4 27h24" /></svg>
+                        <h3>Gold and silver bars and coins</h3>
+                        <p>Record weight in grams or ounces, brand, series, edition, mint year, country and serial number.</p>
+                    </li>
+                    <li class="feat">
+                        <span class="feat-icon">
+                            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="12" /><path d="M16 9v14" /><path d="M20 12.5c-.8-1-2.2-1.5-4-1.5-2.2 0-4 1-4 2.6 0 3.6 8 1.8 8 5.4 0 1.6-1.8 2.6-4 2.6-1.8 0-3.300-.6-4-1.700" /></svg>
                         </span>
-                        <span class="shot-num">02</span>
-                        <h3>Performance, per piece</h3>
-                        <p>Every bar and coin has its own chart, so you can see exactly how it's performed.</p>
-                    </figcaption>
-                </figure>
-
-                <figure class="shot">
-                    <div class="phone">
-                        <img src="screenshot_bullion_preview.png" alt="Goldivio bullion preview" loading="lazy">
-                    </div>
-                    <figcaption>
-                        <span class="shot-icon">
-                            <svg viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="8" rx="11" ry="4" /><path d="M5 8v8c0 2.2 4.9 4 11 4s11-1.8 11-4V8" /><path d="M5 16v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8" /></svg>
+                        <h3>Portfolio value at your spot price</h3>
+                        <p>Set the gold and silver spot price per ounce and see total market value update instantly.</p>
+                    </li>
+                    <li class="feat">
+                        <span class="feat-icon">
+                            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 27V15" /><path d="M12 27V9" /><path d="M20 27V17" /><path d="M28 27V5" /><path d="M4 27h24" /></svg>
                         </span>
-                        <span class="shot-num">03</span>
-                        <h3>Gold &amp; silver, your way</h3>
-                        <p>Add your bars and coins and record the details that make each one unique.</p>
-                    </figcaption>
-                </figure>
-
-                <figure class="shot">
-                    <div class="phone">
-                        <img src="screenshot_receipt.png" alt="Goldivio receipt attachment" loading="lazy">
-                    </div>
-                    <figcaption>
-                        <span class="shot-icon">
-                            <svg viewBox="0 0 32 32" fill="none"><rect x="3" y="9" width="26" height="18" rx="2.5" /><circle cx="16" cy="18" r="6" /><rect x="11" y="5" width="8" height="4" rx="1" /></svg>
+                        <h3>Profit and loss tracking</h3>
+                        <p>Invested amount, current value, profit and percentage return for every item and each metal.</p>
+                    </li>
+                    <li class="feat">
+                        <span class="feat-icon">
+                            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="3" y="9" width="26" height="18" rx="2.5" /><circle cx="16" cy="18" r="6" /><rect x="11" y="5" width="8" height="4" rx="1" /></svg>
                         </span>
-                        <span class="shot-num">04</span>
-                        <h3>Photos &amp; receipts</h3>
-                        <p>Attach a photo and the receipt, so provenance is never a question later.</p>
-                    </figcaption>
-                </figure>
-
-                <figure class="shot">
-                    <div class="phone">
-                        <img src="screenshot_design_bar.png" alt="Goldivio bar detail view" loading="lazy">
-                    </div>
-                    <figcaption>
-                        <span class="shot-icon">
-                            <svg viewBox="0 0 32 32" fill="none"><path d="M16 3 L18.8 13.2 L29 16 L18.8 18.8 L16 29 L13.2 18.8 L3 16 L13.2 13.2 Z" /></svg>
+                        <h3>Receipts, certificates and photos</h3>
+                        <p>Attach proof of purchase and photos to every piece, so provenance is never a question later.</p>
+                    </li>
+                    <li class="feat">
+                        <span class="feat-icon">
+                            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 3 L18.8 13.2 L29 16 L18.8 18.8 L16 29 L13.2 18.8 L3 16 L13.2 13.2 Z" /></svg>
                         </span>
-                        <span class="shot-num">05</span>
-                        <h3>Built to explore</h3>
-                        <p>Parallax depth and interactive views make browsing feel tactile and physical.</p>
-                    </figcaption>
-                </figure>
-
-                <figure class="shot">
-                    <div class="phone">
-                        <img src="screenshot_spot_price.png" alt="Goldivio spot price settings" loading="lazy">
-                    </div>
-                    <figcaption>
-                        <span class="shot-icon">
-                            <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" /><path d="M16 9v14" /><path d="M20 12.5c-.8-1-2.2-1.5-4-1.5-2.2 0-4 1-4 2.6 0 3.6 8 1.8 8 5.4 0 1.6-1.8 2.6-4 2.6-1.8 0-3.300-.6-4-1.700" /></svg>
+                        <h3>Premium over spot</h3>
+                        <p>Compare what you paid with the value at spot to see the premium on each purchase.</p>
+                    </li>
+                    <li class="feat">
+                        <span class="feat-icon">
+                            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="8" rx="11" ry="4" /><path d="M5 8v8c0 2.2 4.9 4 11 4s11-1.8 11-4V8" /><path d="M5 16v8c0 2.2 4.9 4 11 4s11-1.8 11-4v-8" /></svg>
                         </span>
-                        <span class="shot-num">06</span>
-                        <h3>Spot price</h3>
-                        <p>Set the spot price and see your numbers update instantly.</p>
-                    </figcaption>
-                </figure>
+                        <h3>Your currency, your units</h3>
+                        <p>Choose your currency and track in grams or troy ounces, whichever you think in.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
+        <!-- PRIVACY -->
+        <section id="privacy" class="privacy band band--dark" aria-labelledby="privacy-title">
+            <div class="wrap">
+                <div class="section-head">
+                    <p class="eyebrow">Private by design</p>
+                    <h2 id="privacy-title">No cloud. No account. <span class="gold-text">Nobody else sees your stack.</span></h2>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Offline by design</span>
+                        <p>No servers, no sync and no tracking. Goldivio never needs the internet.</p>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">Biometric</span>
+                        <span class="stat-label">Security</span>
+                        <p>Lock your portfolio with fingerprint or face unlock.</p>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">256&#8209;bit</span>
+                        <span class="stat-label">On&#8209;device encryption</span>
+                        <p>Your data is encrypted and stays on your phone, nowhere else.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="faq-band band band--light" aria-labelledby="faq-title">
+            <div class="wrap">
+                <div class="section-head">
+                    <p class="eyebrow">Questions</p>
+                    <h2 id="faq-title">Gold and silver tracker <span class="gold-text">FAQ.</span></h2>
+                </div>
+
+                <div class="faq-list">
+                    <details>
+                        <summary>What is Goldivio?</summary>
+                        <p>Goldivio is an offline gold and silver portfolio tracker for Android. You log your bullion bars and coins, set the spot price, and the app shows your portfolio value, invested amount and profit or loss.</p>
+                    </details>
+                    <details>
+                        <summary>Does Goldivio work without an internet connection?</summary>
+                        <p>Yes. Goldivio runs fully offline. There is no cloud sync, no sign-up and no server. Everything stays on your device.</p>
+                    </details>
+                    <details>
+                        <summary>Does Goldivio show live gold and silver prices?</summary>
+                        <p>No. Goldivio never fetches prices from the internet. You set the current gold and silver spot price per ounce yourself, and the value of your whole collection updates instantly. This is what keeps the app private and offline.</p>
+                    </details>
+                    <details>
+                        <summary>Is my gold and silver data private and secure?</summary>
+                        <p>Your data is encrypted and stored only on your device. It is never uploaded anywhere. You can also lock the app with fingerprint or face unlock.</p>
+                    </details>
+                    <details>
+                        <summary>What can I track with Goldivio?</summary>
+                        <p>Gold and silver bars and coins from any mint or refinery. For each piece you can record weight in grams or ounces, brand, series, edition, serial number, purchase price and date, and storage location, and attach receipts, certificates of authenticity and photos.</p>
+                    </details>
+                    <details>
+                        <summary>Is Goldivio free?</summary>
+                        <p>Goldivio is free to download on Google Play for Android. There are no accounts and no subscriptions.</p>
+                    </details>
+                </div>
             </div>
         </section>
 
         <!-- DOWNLOAD -->
-        <section id="download" class="cta">
-            <div class="cta-texture" aria-hidden="true"></div>
+        <section id="download" class="download band band--dark" aria-labelledby="download-title">
+            <div class="wrap">
+                <div class="cta">
+                    <div class="cta-texture" aria-hidden="true"></div>
 
-            <div class="cta-content">
-                <p class="eyebrow eyebrow--flanked">Get started</p>
-                <h2>Start your collection <span class="gold-text">today.</span></h2>
-                <p class="cta-copy">No account. No subscription. No server ever sees your gold.</p>
+                    <div class="cta-content">
+                        <p class="eyebrow eyebrow--flanked">Get started</p>
+                        <h2 id="download-title">Start your collection <span class="gold-text">today.</span></h2>
+                        <p class="cta-copy">Download the Goldivio gold and silver tracker for Android. No account. No subscription. No server ever sees your gold.</p>
 
-                <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank"
-                    rel="noopener noreferrer" class="play-badge">
-                    <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get it on Google Play">
-                </a>
-            </div>
+                        <a href="https://play.google.com/store/apps/details?id=krski.gld" target="_blank"
+                            rel="noopener noreferrer" class="play-badge">
+                            <img src="GetItOnGooglePlay_Badge_Web_color_English.png" alt="Get Goldivio on Google Play"
+                                width="190" height="74" loading="lazy">
+                        </a>
+                    </div>
 
-            <div class="cta-phones" aria-hidden="true">
-                <div class="phone"><img src="screenshot_receipt.png" alt=""></div>
-                <div class="phone"><img src="screenshot_grid.png" alt=""></div>
-                <div class="phone"><img src="screenshot_spot_price.png" alt=""></div>
+                    <div class="cta-phones" aria-hidden="true">
+                        <div class="cta-phone"><img src="screenshot_receipt-360.webp" alt="" width="1092" height="2436" loading="lazy"></div>
+                        <div class="cta-phone"><img src="screenshot_holdings-360.webp" alt="" width="1092" height="2436" loading="lazy"></div>
+                        <div class="cta-phone"><img src="screenshot_spot_price-360.webp" alt="" width="1092" height="2436" loading="lazy"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer class="footer">
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="wrap footer-inner">
             <span class="footer-line">
                 <span class="status-dot" aria-hidden="true"></span>
-                Goldivio
+                Goldivio - gold and silver portfolio tracker for Android
             </span>
-        </footer>
-
-    </div>
+            <span class="footer-legal">Google Play and the Google Play logo are trademarks of Google LLC.</span>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
