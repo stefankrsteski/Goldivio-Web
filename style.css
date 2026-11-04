@@ -416,8 +416,9 @@ h1, h2, h3 {
 }
 
 .hero-lede {
-    max-width: 600px;
+    max-width: 960px;
     margin: 0 auto 32px;
+    text-wrap: balance;
     color: var(--ink-muted);
     font-size: clamp(1rem, 0.4vw + 0.92rem, 1.12rem);
     line-height: 1.7;
